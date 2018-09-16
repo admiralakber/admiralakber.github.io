@@ -1,0 +1,22 @@
+# Site settings
+title: "Aqeel Akber"
+email: aqeel.akber@gmail.com
+description: "I'm a physicist"
+baseurl: ""
+url: "https://admiralakber.github.io"
+enforce_ssl: admiralakber.github.io
+twitter_username: AdmiralAkber
+github_username:  AdmiralAkber
+disqus_short_name: aakber
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+mathjax: true
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+

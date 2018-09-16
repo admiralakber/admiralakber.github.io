@@ -1,0 +1,38 @@
+---
+layout: default
+title: "Aqeel Akber. I'm a physicist."
+---
+
+<style>
+  body{
+    background:url('../assets/bg.jpg') no-repeat center center fixed;
+    -moz-background-size:cover;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    overflow-x: hidden;
+  }
+</style>
+
+<div class="wrap-center">
+  <h1>Aqeel Akber</h1>
+  <p>
+    I am Aqeel Akber, a Ph.D student in nuclear physics at the
+    Australian National University.
+  </p>
+  <p>
+    I like art, science, nature, and humanity. I have a <a href="https://twitter.com/AdmiralAkber" title="Twitter: @AdmiralAkber">twitter</a>. This is my blog.
+  </p>
+
+  <br>
+
+  <ul style="list-style-type: none;">
+    {% for post in site.posts %}
+    <li>
+      <strong>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></strong><br>
+      {% if post.tags %}<span style="font-variant: small-caps;"><i class="fa fa-tags" style="font-size: 0.7em;" aria-hidden="true"></i> {% for tag in post.tags %}<a href="/tags#{{ tag }}">{{ tag }}</a> {% endfor %}</span>{% endif %}
+      {{ post.excerpt }}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

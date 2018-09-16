@@ -1,0 +1,39 @@
+---
+layout: default
+title: Posts by tag
+permalink: tags
+---
+
+<style>
+  body{
+    background:url('../assets/bg.jpg') no-repeat center center fixed;
+    -moz-background-size:cover;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    overflow-x: hidden;
+  }
+</style>
+
+<div class="wrap-center">
+  <h1>{{ page.title }}</h1>
+  <br>
+
+  {% capture tags %}
+  {% for tag in site.tags %}
+  {{ tag[0] }}
+  {% endfor %}
+  {% endcapture %}
+  {% assign sortedtags = tags | split:' ' | sort %}
+
+  {% for tag in sortedtags %}
+  <h2 id="{{ tag }}" style="font-variant: small-caps;">{{ tag }}</h2>
+  <ul>
+    {% for post in site.tags[tag] %}
+    <li>
+      <span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</div>
