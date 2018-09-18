@@ -73,8 +73,8 @@ Jumping right to it.
    by design through compartmentalisation. Security is important to me and using
    Qubes (correctly) forces me to *be more secure simply by operating within
    it*. However, this isn't the only reason why I have selected Qubes.
-   Compartmentalising is organising too proof of which I leave as an exercise to
-   the reader.
+   Compartmentalising is organising too, proof of which I leave as an exercise
+   to the reader.
 
    For my current mode of operation, I find that there are only two drawbacks to
    the compartmentalisation that Qubes provides: no GPU rendering in the
@@ -119,7 +119,15 @@ Jumping right to it.
 
 * Conclusion
 
-  Following the above policy ensures security and organisation by
+  I am introducing myOS as a set of theorems and policies that define the my
+  mode of operation with all systems in my life. The conscious design choice
+  involved in developing of these theorems and policies is an investment of
+  time. Return on this investment is a freeing of decision making and reducing
+  stress in the future. The goal of myOS is to create an environment where
+  progression of my personal identity and creation of work is maximised and
+  effort is minimised.
+
+  Following myOS / theorem 1 and policy 1 ensures security and organisation by
   compartmentalisation. [[https://www.qubes-os.org/doc/backup-restore][Backups have become trivial]] and security is improved. It
   fits naturally into my "character" workflow that I had noticed emerged
   organically. Surprisingly, my dotfiles have become simpler too and will be the
