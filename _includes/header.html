@@ -2,33 +2,33 @@
   <a class="site-title" href="{{ site.baseurl }}/" title="A. Akber: Home">
     A. Akber <i class="fa fa-home" aria-hidden="true"></i>
   </a>
-  
+
   <div class="site-tray">
     <a href="javascript:void(0)" onclick="vis_toggle('tray');return false;" class="tray-btn">
       <i class="fa fa-tasks"></i>
     </a>
-    
+
     <div class="trigger" id="tray">
       <a class="tray-icon" href="{{ "/feed.xml" | prepend: site.baseurl }}" title="A. Akber: Atom/RSS XML feed">
-	<i class="fa fa-rss"></i>
+  <i class="fa fa-rss"></i>
       </a>
 
       <a class="tray-icon" href="{{ site.baseurl}}/tags" title="A. Akber: Posts by tag">
-	<i class="fa fa-tags"></i>
+  <i class="fa fa-tags"></i>
       </a>
-      
+
       {% if site.github_username %}
       <a class="tray-icon" href="https://github.com/{{ site.github_username }}" title="Github: {{ site.github_username }}">
-	<i class="fa fa-github"></i>
+  <i class="fa fa-github"></i>
       </a>
       {% endif %}
-      
+
       {% if site.twitter_username %}
       <a class="tray-icon" href="https://twitter.com/{{ site.twitter_username }}" title="Twitter: {{ site.twitter_username }}">
-	<i class="fa fa-twitter"></i>
+  <i class="fa fa-twitter"></i>
       </a>
       {% endif %}
-      
+
       <a class="tray-clock" id="clock"></a>
     </div>
   </div>
