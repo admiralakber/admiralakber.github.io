@@ -1,0 +1,173 @@
+---
+title: "myOS / Qubes and the Laptop"
+date: 2018-09-17
+layout: post
+categories:
+tags:
+- myos
+- lifehack
+- workflow
+- qubes
+published: true
+comments: true
+---
+<p>
+Here's the back story: the last year has been non-stop work. My <code>$HOME</code> folder
+turned has about 100 files just sitting in it, 2 <code>tmp</code> folders filled with lots
+of stuff, I'm constantly synchronising emails to my disk so that I can use
+<a href="https://notmuchmail.org/">notmuch</a> mail to filter it but something broke &#x2013; I don't even remember / know
+what (maybe nothing?), I have accrued many private keys for all the VPS' I've
+been using, invested in a <a href="https://www.passwordstore.org/">password manager</a> and am only starting to realise how
+easy it is to get to 50+ different services &#x2013; and none of this is backed up.
+</p>
+
+<p>
+My entire digital existence, ability to operate at my desired pace, and
+thousands of hours of work over the past year exists solely my laptop. I rely on
+all of the digital systems patchily held together on my laptop like oxygen. It
+is the ever reliable tool that is now broken, awaiting to be picked up by
+courier today to be sent back to Lenovo. I'm somewhat lucky, that my old laptop
+started to fail at this time when I seem to be perpetually struck down my
+viruses and therefore have an excuse to "take a break" and backup all my data at
+the very least. Of course being me, I'd rather take this an opportunity to
+review, revise, and do better. I'm forcing a <i>complete systems reboot</i> on my
+terms.
+</p>
+
+<p>
+This time, I have a recovery plan that starts from pen and paper. Starting from
+my notebook you should be able to reconstruct my operating system to all systems
+go even if I had completely lost my memory or died. I broadened what I consider
+<i>my</i> operating system to include hardware devices both <i>analogue</i> and <code>digital</code>.
+This has allowed me to include more aspects of my life as <i>systems</i>. My
+operating system is the collection of these systems carefully designed such that
+I achieve my goals transparently. Something I want to stress &#x2013; nothing should
+feel like it gets in the way. I just do within my operating system and things
+happen the way I want them. This lets me, the human, do what I do best: focus on
+the creative and abstract.
+</p>
+
+<p>
+The Yeah&#x2026; it was only a matter of time before I was to become a full
+blown <a href="https://en.wikipedia.org/wiki/Life_hack">life hacker</a>.
+</p>
+
+<p>
+As my laptop only died about 4 weeks ago and I am being painfully conscientious
+about all design decisions I have decided to start publishing this little
+endeavor of mine in pieces under the <a href="/tags#myos"
+style="font-variant : small-caps;">myos</a> tag. Since I am down a laptop,
+before I can start on the fun <i>analogue</i> stuff I better replace my laptop.
+</p>
+
+<p>
+Jumping right to it.
+</p>
+
+<div id="outline-container-orgfd0dd1a" class="outline-2">
+<h2 id="orgfd0dd1a">myOS / <code>digital</code>::device::laptop</h2>
+<div class="outline-text-2" id="text-orgfd0dd1a">
+<p>
+My laptop on the way out is a Lenovo Thinkpad Yoga X1 Carbon Gen 2 (x1y2) with
+a gorgeous WQHD OLED screen. I bought the x1y2 for the screen: black meant
+zero light, fantastic for power consumption and night use. Being a Thinkpad X1
+it's rugged and lightweight too &#x2013; necessary features because it is important
+to me that I can simply slip my laptop in my <i>analogue</i>::device::bag and head
+off to work anywhere.
+</p>
+
+<p>
+Lenovo offered to replace my x1y2 with an x1y3 (gen 3) while the processor is
+faster and it was a fair trade monetarily it didn't have an OLED screen and
+therefore for me was not a value trade. Instead, I got a cash refund and
+purchased a Thinkpad X1 Carbon Gen 6 (x1g6). It also doesn't have an OLED
+screen but it is smaller, lighter, and I was able to get an even faster
+processor and more <code>digital</code>::storage::local::bulk to offset the loss of the
+screen.
+</p>
+</div>
+
+<div id="outline-container-org65b8f7b" class="outline-3">
+<h3 id="org65b8f7b">distro = myOS / Qubes</h3>
+<div class="outline-text-3" id="text-org65b8f7b">
+<p>
+After being a loyal <a href="https://www.archlinux.org/">Arch Linux</a> user for over 5 years I have decided to move
+to <a href="https://www.qubes-os.org/">Qubes OS</a>. I hadn't tried Qubes before and it started off simply out of
+curiosity but I believe I'm going to stick with it. Qubes provides security
+by design through compartmentalisation. Security is important to me and using
+Qubes (correctly) forces me to <b>be more secure simply by operating within
+it</b>. However, this isn't the only reason why I have selected Qubes.
+Compartmentalising is organising too proof of which I leave as an exercise to
+the reader.
+</p>
+
+<p>
+For my current mode of operation, I find that there are only two drawbacks to
+the compartmentalisation that Qubes provides: no GPU rendering in the
+browser, and audio forwarding takes more CPU. I understand and completely
+respect that this is for security reasons. I also greatly respect the <a href="https://www.qubes-os.org/team/">Qubes
+team's</a> dedication to security <i>and user experience</i>. It's only a matter of
+time before something is worked out and it will be awesome. Qubes is the
+future.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org59be037" class="outline-2">
+<h2 id="org59be037">Organisation by compartmentalisation</h2>
+<div class="outline-text-2" id="text-org59be037">
+<p>
+As I was looking at the top level of my old documents folder I had separated
+it into: personal, university, businessX. As you can see from <a href="https://pgp.mit.edu/pks/lookup?search=0x14FC5B7CFED383A3">PGP Identity</a> I
+also have multiple email accounts, each one calls on me to do a different type
+of work. Unsurprisingly, these email accounts directly translate to my now old
+top level folders of files. It makes sense from a security standpoint, and an
+organisation standpoint to have a different qube for each of these email
+accounts. The emergence of this organisation organically makes sense: when you
+start a new role at a company, one of the first things they do for you is set
+up an email account. This brings me to my first theorem:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / theorem 1
+An email account provides an interface for the outside world for you to send and receive tasks and work.
+</pre>
+</div>
+
+<p>
+So for every role/hat/character I play in the world I have an email account
+for input+output. To ensure it's actually getting to Aqeel the human, it must
+be associated with my <a href="https://pgp.mit.edu/pks/lookup?search=0x14FC5B7CFED383A3">PGP Identity</a>. I'm liking this character-human relation
+so let's go with that for my first policy:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / policy 1
+For each character of the human Aqeel Akber there is:
+  - an email account associated on PGP Identity 0x14FC5B7CFED383A3
+  - a qube on digital::device::laptop::distro
+</pre>
+</div>
+
+<p>
+<b>Please don't trust the above statement of my PGP Identity blindly</b>. Better,
+ cross-check it <a href="https://github.com/admiralakber/admiralakber.github.io/blob/master/blog/2018-09-17-myos-qubes.org">with the PGP signed git commit and original org file that
+ generates this webpage</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgae8286c" class="outline-2">
+<h2 id="orgae8286c">Conclusion</h2>
+<div class="outline-text-2" id="text-orgae8286c">
+<p>
+Following the above policy ensures security and organisation by
+compartmentalisation. <a href="https://www.qubes-os.org/doc/backup-restore">Backups have become trivial</a> and security is improved. It
+fits naturally into my "character" workflow that I had noticed emerged
+organically. Surprisingly, my dotfiles have become simpler too and will be the
+subject of the next installment of <a href="/tags#myos"
+  style="font-variant : small-caps;">myos</a>.
+</p>
+</div>
+</div>

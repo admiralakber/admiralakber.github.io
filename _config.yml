@@ -20,3 +20,8 @@ kramdown:
   hard_wrap: false
   syntax_highlighter: rouge
 
+gems: [jekyll-org]
+
+# Plugins
+plugins:
+  - jekyll-org

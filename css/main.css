@@ -5,7 +5,7 @@
 * {
     margin: 0;
     padding: 0;
-    
+
 }
 
 html, body{
@@ -29,8 +29,6 @@ body {
     position: fixed;
     top: 0;
 }
-
-
 
 /* page title */
 a.site-title, .site-title:visited {
@@ -206,10 +204,50 @@ article.post-content ol > li::before {
     text-align: right;
 }
 
+/* keypoint */
+.src-keypoint {
+    background: #f9f9f9;
+    border: none;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+.src-keypoint::first-line {
+    color: #a88;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+/* block quote */
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+blockquote p {
+    display: inline;
+}
 
 /* code highlighting */
 
-code.highlighter-rouge {
+code {
     background-color: #f8f8f8;
     border: 1px solid #ccc;
     font-size: 0.8em;
@@ -291,14 +329,14 @@ code.highlighter-rouge {
 /* vertically challenged */
 @media (max-height: 600px) {
     .site-header {
-	position: absolute;
+  position: absolute;
     }
     .site-footer {
-	position: static;
+  position: static;
     }
 
     div.page-content {
-	padding-bottom: 24px;
+  padding-bottom: 24px;
     }
 }
 
@@ -312,10 +350,10 @@ code.highlighter-rouge {
 @media (max-width: 600px) {
     .site-tray a.tray-btn { display: block; z-index: 0; }
     .site-title { width: 80%; }
-    
+
     .site-tray .trigger {
-	clear: both;
-	display: none;
+  clear: both;
+  display: none;
     }
 
     .site-footer .licence span.text { display: none; }
@@ -326,6 +364,6 @@ code.highlighter-rouge {
 /* well fed */
 @media (min-width: 600px) {
     .site-tray .trigger {
-	display: block !important;
+  display: block !important;
     }
 }
