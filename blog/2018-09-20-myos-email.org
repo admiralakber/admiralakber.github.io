@@ -22,12 +22,12 @@ Here's what you'll get:
 
 However, that isn't enough to complete all your email tasks. You need to be able
 to view and compose emails too i.e. you need an [[https://en.wikipedia.org/wiki/Email_client][mail user agent (a.k.a email
-client)]] that supports the above. Also to closer align with
+client)]] that supports the above. To closer align with
 {{{postlink(2018-09-17-myos-qubes,myOS / policy 1)}}} GPG must also be setup so
 that you can sign, encrypt, and decrypt emails. Because GPG is used for more
 than just email I have not included it in the ~myOS / email~ system. Likewise,
-as I am going to use [[https://notmuchmail.org/notmuch-emacs/][notmuch-emacs]] as my mail user agent and that is part of the
-~myOS /emacs~ system that is configured independently. Details of my emacs
+as I am going to use [[https://notmuchmail.org/notmuch-emacs/][notmuch-emacs]] as my mail user agent, and that is part of
+the ~myOS /emacs~ system, it is configured independently. Details of my emacs
 configuration are left for later post.
 
 #+CAPTION: Software that utilizes the ~myOS / email~ system.
