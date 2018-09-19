@@ -1,6 +1,6 @@
 /* BASE */
 
-@import 'https://fonts.googleapis.com/css?family=Crimson+Text';
+@import 'https://fonts.googleapis.com/css?family=Crimson+Text|News+Cycle';
 
 * {
     margin: 0;
@@ -202,6 +202,41 @@ article.post-content ol > li::before {
     content: counter(foo) ".";
     display: table-cell; /* aha! */
     text-align: right;
+}
+
+/* general org mode */
+.org-center {
+    text-align: center;
+}
+
+.org-left {
+    text-align: left;
+}
+
+.org-right {
+    text-align: right;
+}
+
+/* table */
+
+table {
+    width: 100%;
+    font-size: 0.8em;
+    font-family: 'News Cycle', sans;
+    margin-bottom: 1em;
+}
+
+caption {
+    font-family: 'News Cycle', sans;
+}
+
+table, thead {
+    border-width: 2px;
+}
+
+th, td {
+    padding: 0.3em;
+    vertical-align: middle;
 }
 
 /* keypoint */

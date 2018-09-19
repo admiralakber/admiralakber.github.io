@@ -1,0 +1,439 @@
+#+TITLE: myOS / email - Building the perfect email setup
+#+DATE: 2018-09-20
+#+SETUPFILE: ~/Blog/src/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES:
+#+JEKYLL_TAGS: myos emacs
+#+JEKYLL_PUBLISHED: true
+
+Trust me when I say this is the perfect setup, I've tried pretty much all of
+them. This setup is designed to align with {{{taglink(myos)}}} as described in
+my {{{postlink(2018-09-17-myos-qubes,last post)}}} that I recommend reading.
+Here's what you'll get:
+
+#+CAPTION: Summary of software involved in the ~myOS / email~ system.
+#+NAME: tbl:myos-email
+| Email Task             | Software           | Configuration Repository              |
+|------------------------+--------------------+---------------------------------------|
+| <c>                    | <c>                | <c>                                   |
+| Sending                | [[https://marlam.de/msmtp/][msmtp]]              | {{{github(admiralakber,myOS-email)}}} |
+| Receiving              | [[http://isync.sourceforge.net/][isync a.k.a mbsync]] | {{{github(admiralakber,myOS-email)}}} |
+| Organising + Filtering | [[https://notmuchmail.org/][notmuch]]            | {{{github(admiralakber,myOS-email)}}} |
+
+However, that isn't enough to complete all your email tasks. You need to be able
+to view and compose emails too i.e. you need an [[https://en.wikipedia.org/wiki/Email_client][mail user agent (a.k.a email
+client)]] that supports the above. Also closer align with
+{{{postlink(2018-09-17-myos-qubes,myOS / policy 1)}}} GPG must also be setup so
+that you can sign, encrypt, and decrypt emails. Because GPG is used for more
+than just email I have not included it in the ~myOS / email~ system. Likewise,
+as I am going to use [[https://notmuchmail.org/notmuch-emacs/][notmuch-emacs]] as my mail user agent and that is part of the
+~myOS /emacs~ system that is configured independently. Details of my emacs
+configuration are left for later post.
+
+#+CAPTION: Software that utilizes the ~myOS / email~ system.
+#+NAME: tbl:util-myos-email
+| Email Task           | Software      | Configuration Repository              |
+|----------------------+---------------+---------------------------------------|
+| <c>                  | <c>           | <c>                                   |
+| Viewing / Composing  | [[https://notmuchmail.org/notmuch-emacs/][notmuch-emacs]] | {{{github(admiralakber,myOS-emacs)}}} |
+| Encryption / Signing | [[https://gnupg.org][gpg]]           | myOS-distro                           |
+
+By not including the mail user agent and encryption software in the ~myOS /
+email~ system I have achieved another level of compartmentalisation. This
+reduces the scope of the configuration required making it more manageable. Also
+in this case it allows greater flexibility as ~myOS / email~ doesn't force you
+to use emacs as your email client and you may [[https://notmuchmail.org/frontends/][select one of your choice here]]. It
+is however not completely independent as I rely on GPG to encrypt/decrypt your
+email account credentials rather than doing the silly thing of storing them in
+plain text in a file.
+
+#+CAPTION: Software that the ~myOS / email~ system utilizes.
+#+NAME: tbl:myos-email-util
+| Email Task             | Software | Configuration Repository |
+|------------------------+----------+--------------------------|
+| <c>                    | <c>      | <c>                      |
+| Credentials encryption | [[https://gnupg.org][gpg]]      | myOS-distro              |
+
+In general, you have complete freedom over the software to complete tasks that
+utilizes the system (Table [[tbl:util-myos-email]]) but not the software that the
+system utilizes (Table [[tbl:myos-email-util]]). However, if you have any
+alternative software to complete the task it eventually becomes a matter of
+find+replace or aliasing -- interesting... That's started a train of thought
+that I'll publish next.
+
+* ~myOS / email~
+
+  Here's how it all works and how you get it up and running. As I am using
+  {{{postlink(2018-09-17-myos-qubes,Qubes and following myOS / policy 1)}}} the
+  scope of my email configuration dotfiles are reduced to a single email
+  address. I no longer have to set up my email clients to deal with multiple
+  email addresses. My dotfiles now live in ~/etc/skel~ of my main /TemplateVM/
+  qube. However, if you're not using [[https://www.qubes-os.org/][Qubes]] you can still use this configuration
+  but you would likely want to copy it directly to your home folder.
+
+  Before I go into all the dotfiles I will talk about what each piece of
+  software is doing. Emails are downloaded using IMAP and [[http://isync.sourceforge.net/][mbsync]] into a Maildir
+  stored in =~/Mail/<youremail@example.com>=, you now have all your emails for
+  offline reading and searching. Tagging, filtering, and searching is done using
+  [[https://notmuchmail.org/][notmuch]] and it makes GMail look like a toy in comparison for these tasks.
+  Finally, emails are sent asynchronously using [[https://marlam.de/msmtp/][msmtp]], you can stage emails to
+  be sent while offline.
+
+  The repository {{{github(admiralakber,myOS-emacs)}}} has the most up to date
+  dotfiles and simple installation instructions for reference. I'll go over them
+  in more detail here and give a quick example of how to get started with some
+  basic tagging with notmuch. I will use setting up my personal GMail account
+  for example, replace my email address with your own.
+
+  Clone the repo and it's two easy steps.
+
+** Step 1: Copy in the files and structure
+
+   Firstly, here is the file structure of the entire system configuration. This
+   is what you will be copying into your home folder. All of the real files are
+   stored in =~/Mail/config=. Everything else is either a symbolic link or an
+   empty folder. Scripts in =~/Mail/config/bin= are /machinery/ around msmtp to
+   provide an mail queue (outbox).
+
+  #+BEGIN_SRC shell
+  .
+  ├── .local
+  │   └── bin
+  │       ├── msmtp-enqueue.sh -> ../../Mail/config/bin/msmtp-enqueue.sh
+  │       ├── msmtp-listqueue.sh -> ../../Mail/config/bin/msmtp-listqueue.sh
+  │       └── msmtp-runqueue.sh -> ../../Mail/config/bin/msmtp-runqueue.sh
+  ├── Mail
+  │   ├── aqeel.akber@gmail.com
+  │   ├── config
+  │   │   ├── bin
+  │   │   │   ├── msmtp-enqueue.sh
+  │   │   │   ├── msmtp-listqueue.sh
+  │   │   │   └── msmtp-runqueue.sh
+  │   │   ├── credentials.gpg
+  │   │   ├── mbsyncrc
+  │   │   ├── msmtprc
+  │   │   └── notmuch-config
+  │   ├── .msmtpqueue
+  │   └── .notmuch
+  ├── .mbsyncrc -> Mail/config/mbsyncrc
+  ├── .msmtprc -> Mail/config/msmtprc
+  ├── .notmuch-config -> Mail/config/notmuch-config
+  #+END_SRC
+
+** Step 2: Edit the files in =~/Mail/config=
+
+   There isn't much to edit, just your standard email account things. Let's
+   start with the trickier stuff.
+
+*** Step 2a: =~/Mail/config/credentials.gpg= (Optional, Recommended)
+
+    You can just type your password into the other config files in plain text. I
+    recommend that you generate an encrypted file, it's quite easy with GPG.
+    Make a temporary plain text file with your password in it, encrypt it, shred
+    the temporary file.
+
+    #+BEGIN_SRC shell
+    $EDITOR mypass.txt
+    gpg -r "Your Name <youremail@example.com>" -e mypass.txt > credentials.gpg
+    shred -n 200 -z -u mypass.txt
+    #+END_SRC
+
+*** Step 2b: =~/Mail/config/mbsyncrc=
+
+    This file possibly requires the most edits, it is about 50 lines long
+    (including new lines). It controls how mbsync maps remote IMAP folders to
+    the local Maildir. The following setup works wonderfully for GMail. I'm
+    going to breakdown the file from the top. Starting with the basic account
+    info:
+
+    #+BEGIN_SRC conf
+    IMAPaccount gmail
+    host imap.gmail.com
+    user aqeel.akber@gmail.com
+    PassCmd "gpg -q -d --no-tty ~/Mail/config/credentials.gpg"
+    SSLType IMAPS
+    CertificateFile /etc/ssl/certs/ca-bundle.crt
+    #+END_SRC
+
+    The first three lines are self explanatory change these to suit your email
+    account. The =PassCmd= line is the command to decrypt the file you made
+    above. It should simply return your password to stdout, test the command in
+    your terminal. =SSLType IMAPS= is telling mbsync to connect to the server
+    using SSL/TLS on the secure IMAP port 993. If your server doesn't support
+    this you might want to try =SSLType STARTTLS= instead. The last line is to
+    your systems default certificate file. The file above works for Fedora, on
+    other distrobutions the path is likely the same but the filename might be
+    =ca-certificates.crt= instead.
+
+    Next we define where our emails are remotely, and where we're going to keep
+    them locally. These are called stores:
+
+    #+BEGIN_SRC conf
+    IMAPStore gmail-remote
+    account gmail
+
+    MaildirStore gmail-local
+    # trailing "/" is important
+    Path ~/Mail/aqeel.akber@gmail.com/
+    Inbox ~/Mail/aqeel.akber@gmail.com/Inbox
+    #+END_SRC
+
+    The only edits you will want to make here are changing my email address to
+    your own, and perhaps any reference to =gmail= to be consistent with
+    =IMAPaccount= defined above.
+
+    The next is the bulk of the file. It is the mapping between folder on the
+    IMAP store (Master) and a folder in the local store (Slave). For GMail based
+    accounts, it likely will require no more editing than making the names
+    consistent with =IMAPaccount=. For other IMAP servers, you may need to edit
+    the =Slave= line to match the remote folder correctly.
+
+    #+BEGIN_SRC conf
+    Channel gmail-default
+    Master :gmail-remote:
+    Slave :gmail-local:
+    Patterns % "!Sent" "!Drafts" "!Trash"
+    Create Both
+    SyncState *
+    Expunge Both
+
+    Channel gmail-sent
+    Master :gmail-remote:"[Gmail]/Sent Mail"
+    Slave :gmail-local:Sent
+    Create Slave
+    SyncState *
+    Expunge Both
+
+    Channel gmail-drafts
+    Master :gmail-remote:"[Gmail]/Drafts"
+    Slave :gmail-local:Drafts
+    Create Slave
+    SyncState *
+    Expunge Both
+
+    Channel gmail-trash
+    Master :gmail-remote:"[Gmail]/Trash"
+    Slave :gmail-local:Trash
+    Create Slave
+    SyncState *
+    Expunge Both
+    #+END_SRC
+
+    The last part of the file, again you will only need to edit to be consistent
+    with =IMAPaccount=.
+
+    #+BEGIN_SRC conf
+    Group gmail
+    Channel gmail-default
+    Channel gmail-sent
+    Channel gmail-drafts
+    Channel gmail-trash
+    #+END_SRC
+
+*** Step 2c: =~/Mail/config/msmtprc=
+
+    This file configures msmtp. There should be nothing in this file you
+    shouldn't be able to work out if you have properly understood the above.
+    Edit appropriately.
+
+    #+BEGIN_SRC conf
+    defaults
+    auth           on
+    tls            on
+    tls_trust_file /etc/ssl/certs/ca-bundle.crt
+    logfile        ~/Mail/config/.msmtp.log
+
+    account        gmail
+    host           smtp.gmail.com
+    port           587
+    from           aqeel.akber@gmail.com
+    user           aqeel.akber@gmail.com
+    passwordeval   "gpg -q -d --no-tty ~/Mail/config/credentials.gpg"
+    #+END_SRC
+
+*** Step 2d: =~/Mail/config/notmuch-config=
+
+    The last file to configure. You might need to edit =path= to reference your
+    Linux username, =name= and =primary_email= of course, and finally =gpg_path=
+    if you need. Something to note while here are the =tags= under =new= --
+    these are applied to newly downloaded emails after running =notmuch new=.
+
+    #+BEGIN_SRC conf
+    [database]
+    path=/home/user/Mail
+
+    [user]
+    name=Aqeel Akber
+    primary_email=aqeel.akber@gmail.com
+
+    [new]
+    tags=unread;inbox;new;
+    ignore=
+
+    [search]
+    exclude_tags=deleted;spam;
+
+    [maildir]
+    synchronize_flags=true
+
+    [crypto]
+    gpg_path=/usr/bin/qubes-gpg-client
+    #+END_SRC
+
+* Usage
+
+  Now that you're all setup, download all your emails by typing the following:
+  #+BEGIN_SRC shell
+  mbsync -Va
+  #+END_SRC
+
+  After that is done, tag the newly downloaded emails:
+  #+BEGIN_SRC shell
+  notmuch new
+  #+END_SRC
+
+  When setting up your mail user agent use the following in place of =sendmail=:
+  #+BEGIN_SRC shell
+  ~/.local/bin/msmtp-enqueue.sh <just_like_sendmail>
+  #+END_SRC
+  The above sends emails immediately if it can ping Google's DNS server: =8.8.8.8=
+
+  Otherwise, you can check the outbox queue at the command line with:
+  #+BEGIN_SRC shell
+  ~/.local/bin/msmtp-listqueue.sh
+  #+END_SRC
+
+  If you want to force trying to send mail now, run:
+  #+BEGIN_SRC shell
+  ~/.local/bin/msmtp-runqueue.sh
+  #+END_SRC
+
+  You probably would like to set up =systemd= timers or use =cron= to run the
+  above commands periodically. Setting up your mail user agent is up to you, if
+  you use [[http://spacemacs.org][spacemacs]] and can't wait to get started check out my layer
+  {{{github(admiralakber,myOS-spacemacs-pim)}}}.
+
+* A quick and dirty example highlighting why notmuch is awesome
+
+  Notmuch lets you search through your downloaded emails from the command line
+  with powerful queries and tag them see =man notmuch tag= for more info. Also
+  notmuch supports running executables/scripts after particular actions using
+  hooks, see =man notmuch hooks=. By using =notmuch tag= combined with a
+  =post-new= script written in python you can do some pretty awesome things
+  really easily.
+
+  Try this, make a file at =~/Mail/.notmuch/hooks/post-new= with the following
+  in it and make the file executable with =chmod +x=. This is an example of a
+  really quick and dirty script that has served me quite well, *especially the
+  "learn from" filter which (dumbly) learns and mimics my behaviour*. Before
+  going fully down the rabbit hole with this, you might want read [[https://notmuchmail.org/getting-started/#index8h2][how to back up
+  and restore your tags database]].
+
+  #+BEGIN_SRC python
+    #!/usr/bin/python3
+    import subprocess
+
+    def nmtag(tag : str, query : str):
+      """Apply tag to all results of a notmuch query"""
+      tag = tag.split(" ")
+      cmd = subprocess.run(["notmuch", "tag"] +
+                           tag + ["--", query])
+      return cmd
+
+    accname = "gmail"
+    address = "aqeel.akber@gmail.com"
+
+    """Start searching and tagging. When you're done with a particular subset of
+    emails, remove the new tag so that it doesn't appear in subsequent queries.
+    Working in this manner is simple but order matters.
+    """
+
+    # tag account name
+    tag = "+%s" % (accname)
+    query = "(to:%s OR from:%s) AND tag:new" % (address, address)
+    nmtag(tag, query)
+
+    # from one of my accounts is probably important
+    tag = "+inbox"
+    query = "(from:%s) AND tag:new" % address
+    nmtag(tag, query)
+
+    # unless it's sent mail
+    tag = "+sent -unread -inbox -new"
+    query = "(folder:%s/Sent) AND tag:new" % accname
+    nmtag(tag, query)
+
+    # tag things stored as drafts
+    tag = "+draft -inbox -unread -new"
+    query = "(folder:%s/Drafts) AND tag:new" % accname
+    nmtag(tag, query)
+
+    # also, if it's IMAP trash
+    tag = "+trash -inbox -unread -new"
+    query = "(folder:%s/Trash) AND tag:new"
+    nmtag(tag, query)
+
+    ##
+    ## FILTERING
+    ##
+
+    # I STRONGLY ENCOURAGE CALENDAR INVITES VIA EMAIL
+    tag = "+calendar +filtering -inbox"
+    query = "(attachment:.ics) AND tag:new"
+    nmtag(tag, query)
+
+    # LEARN MY BEHAVIOUR OVER TIME
+    # Find email addresses in the database that have been tagged with LEARNFROM at
+    # least 3 times. Tag new emails from these email addresses with the same tag.
+    LEARNFROM = ["vip", "human", "client"]
+    for t in LEARNFROM:
+        tag = "+%s -inbox -new" % t
+        prevfrom = subprocess.run(["notmuch","address","tag:"+t], stdout=subprocess.PIPE)
+        prevfrom = prevfrom.stdout.decode("utf-8").split("\n")
+        prevfrom = filter(lambda x: len(x)>3, prevfrom)
+        for f in prevfrom:
+            query = "(from:%s) AND tag:new" % f
+            nmtag(tag, query)
+
+    # FILTER TWITTER
+    tag = "+social -inbox -new"
+    query = "(from:twitter) AND tag:new"
+    nmtag(tag, query)
+
+    # FILTER SHOPPING UPDATES FROM BOTS
+    tag = "+commerce -inbox -new"
+    query = "(subject:receipt OR subject:invoice OR subject:order OR subject:'ship*' OR subject:'deliv*' OR from:auspost OR from:ebay) AND tag:new"
+    nmtag(tag, query)
+
+    # FILTER ALL OTHER GENERAL NOTIFICATIONS FROM BOTS
+    tag = "+ping -inbox -new"
+    query = "(from:'notif*' OR from:reply OR from:noreply OR from:donotreply OR subject:notification OR subject:reply) AND tag:new"
+    nmtag(tag, query)
+
+    # FINISHED ALL FILTERING
+    tag = "-filtering -new"
+    query = "tag:filtering"
+    nmtag(tag, query)
+
+    # IF IT ISN'T FILTERED, PUT INBOX FOR THE HUMAN TO DEAL WITH IT.
+    tag = "+inbox -new"
+    query = "tag:new"
+    nmtag(tag, query)
+  #+END_SRC
+
+* Conclusions
+
+Email is a fundamental part of {{{taglink(myos)}}}, by introducing
+{{{postlink(2018-09-17-myos-qubes,organisation by compartmentalisation)}}} with
+Qubes configuration of email is reduced to a single email account which
+simplifies the process. Further, by separating the task of viewing and composing
+emails from communication with the server and organising the emails has granted
+further flexibility. Software dependencies across myOS systems was briefly
+discussed which highlighted the possibility of aliasing software in
+configuration files to complete a task - this will be the topic of the next blog
+post.
+
+Installation and configuration of {{{github(admiralakber,myOS-email)}}} was
+explained in detail. A notmuch tag + filtering script that learns and mimics
+your behaviour as well as including simple matching rules was given as an
+example highly effective method of organising mail with minimal effort.

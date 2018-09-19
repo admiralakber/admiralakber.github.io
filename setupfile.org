@@ -8,4 +8,5 @@
 #+MACRO: github [[https://github.com/$1/$2][$2]]
 #+MACRO: gist @@html:{% gist $1 $2 %}@@
 #+MACRO: postlink @@html:<a href="{% post_url $1 %}">$2</a>@@
+#+MACRO: taglink @@html:<a href="/tags#$1" style="font-variant : small-caps;">$1</a>@@
 #+PROPERTY: cache yes
