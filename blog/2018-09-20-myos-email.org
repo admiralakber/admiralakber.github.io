@@ -316,11 +316,11 @@ publish next.
 * A quick and dirty example highlighting why notmuch is awesome
 
   Notmuch lets you search through your downloaded emails from the command line
-  with powerful queries and tag them, see =man notmuch tag= for more info. Also
-  notmuch supports running executables/scripts after particular actions using
-  hooks, see =man notmuch hooks=. By using =notmuch tag= combined with a
-  =post-new= script written in python you can do some pretty awesome things
-  really easily.
+  with powerful queries and tag them, see =man notmuch tag= for more info.
+  Notmuch also supports running executables/scripts after particular actions
+  using hooks, see =man notmuch hooks=. By using =notmuch tag= combined with a
+  =post-new= hook written in python you can do some pretty awesome things really
+  easily.
 
   Try this, make a file at =~/Mail/.notmuch/hooks/post-new= with the following
   in it and make the file executable with =chmod +x=. This is an example of a
