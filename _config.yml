@@ -14,6 +14,15 @@ markdown: kramdown
 permalink: pretty
 mathjax: true
 
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      author: "Aqeel Akber"
+      email: "aqeel.akber@gmail.com"
+      comments: true
+
 highlighter: rouge
 kramdown:
   input: GFM
