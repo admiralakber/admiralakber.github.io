@@ -57,7 +57,7 @@ Here's what you'll get:
 <p>
 However, that isn't enough to complete all your email tasks. You need to be able
 to view and compose emails too i.e. you need an <a href="https://en.wikipedia.org/wiki/Email_client">mail user agent (a.k.a email
-client)</a> that supports the above. Also closer align with
+client)</a> that supports the above. Also to closer align with
 <a href="{% post_url 2018-09-17-myos-qubes %}">myOS / policy 1</a> GPG must also be setup so
 that you can sign, encrypt, and decrypt emails. Because GPG is used for more
 than just email I have not included it in the <code>myOS / email</code> system. Likewise,
@@ -102,11 +102,11 @@ configuration are left for later post.
 By not including the mail user agent and encryption software in the <code>myOS /
 email</code> system I have achieved another level of compartmentalisation. This
 reduces the scope of the configuration required making it more manageable. Also
-in this case it allows greater flexibility as <code>myOS / email</code> doesn't force you
-to use emacs as your email client and you may <a href="https://notmuchmail.org/frontends/">select one of your choice here</a>. It
-is however not completely independent as I rely on GPG to encrypt/decrypt your
-email account credentials rather than doing the silly thing of storing them in
-plain text in a file.
+in this case it allows greater flexibility. Using <code>myOS / email</code> does not force
+you to use emacs as your email client &#x2013; you may <a href="https://notmuchmail.org/frontends/">select one of your choice here</a>.
+However, it isn't completely independent as I rely on GPG to encrypt/decrypt
+your email account credentials rather than doing the silly thing of storing them
+in plain text in a file.
 </p>
 
 <table id="org45d63bd" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -139,22 +139,23 @@ plain text in a file.
 In general, you have complete freedom over the software to complete tasks that
 utilizes the system (Table <a href="#org775ece7">2</a>) but not the software that the
 system utilizes (Table <a href="#org45d63bd">3</a>). However, if you have any
-alternative software to complete the task it eventually becomes a matter of
-find+replace or aliasing &#x2013; interesting&#x2026; That's started a train of thought
-that I'll publish next.
+alternative software to complete the task, it becomes a matter of find+replace
+or aliasing &#x2013; interesting&#x2026; That's started a train of thought that I'll
+publish next.
 </p>
 
 <div id="outline-container-org418795d" class="outline-2">
 <h2 id="org418795d"><code>myOS / email</code></h2>
 <div class="outline-text-2" id="text-org418795d">
 <p>
-Here's how it all works and how you get it up and running. As I am using
+Here's how it all works, and how to get up and running. As I am using
 <a href="{% post_url 2018-09-17-myos-qubes %}">Qubes and following myOS / policy 1</a> the
 scope of my email configuration dotfiles are reduced to a single email
 address. I no longer have to set up my email clients to deal with multiple
-email addresses. My dotfiles now live in <code>/etc/skel</code> of my main <i>TemplateVM</i>
-qube. However, if you're not using <a href="https://www.qubes-os.org/">Qubes</a> you can still use this configuration
-but you would likely want to copy it directly to your home folder.
+email addresses making my life easier. My dotfiles now live in <code>/etc/skel</code> of
+my main <i>TemplateVM</i> qube. However, if you're not using <a href="https://www.qubes-os.org/">Qubes</a> you can still
+use this configuration but you would likely want to copy it directly to your
+home folder.
 </p>
 
 <p>
@@ -168,15 +169,15 @@ be sent while offline.
 </p>
 
 <p>
-The repository <a href="https://github.com/admiralakber/myOS-emacs">myOS-emacs</a> has the most up to date
-dotfiles and simple installation instructions for reference. I'll go over them
+The repository <a href="https://github.com/admiralakber/myOS-emacs">myOS-emacs</a> has the most recent
+dotfiles and basic installation instructions for reference. I'll go over them
 in more detail here and give a quick example of how to get started with some
 basic tagging with notmuch. I will use setting up my personal GMail account
 for example, replace my email address with your own.
 </p>
 
 <p>
-Clone the repo and it's two easy steps.
+Clone the repo and from there it's two easy steps.
 </p>
 </div>
 
@@ -223,8 +224,8 @@ provide an mail queue (outbox).
 <h3 id="orga21de31">Step 2: Edit the files in <code>~/Mail/config</code></h3>
 <div class="outline-text-3" id="text-orga21de31">
 <p>
-There isn't much to edit, just your standard email account things. Let's
-start with the trickier stuff.
+There isn't much to edit, mostly standard email account things. Let's start
+with the trickier stuff.
 </p>
 </div>
 
@@ -239,9 +240,9 @@ the temporary file.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell">$<span style="color: #715ab1;">EDITOR</span> mypass.txt
-gpg -r <span style="color: #2d9574;">"Your Name <a href="mailto:youremail%40example.com">&lt;youremail@example.com&gt;</a>"</span> -e mypass.txt &gt; credentials.gpg
-shred -n <span style="color: #4e3163;">200</span> -z -u mypass.txt
+<pre class="src src-shell">$<span style="color: #db2d20;">EDITOR</span> mypass.txt
+gpg -r <span style="color: #01a252;">"Your Name <a href="mailto:youremail%40example.com">&lt;youremail@example.com&gt;</a>"</span> -e mypass.txt &gt; credentials.gpg
+shred -n <span style="color: #e8bbd0;">200</span> -z -u mypass.txt
 </pre>
 </div>
 </div>
@@ -251,18 +252,17 @@ shred -n <span style="color: #4e3163;">200</span> -z -u mypass.txt
 <h4 id="org1965db4">Step 2b: <code>~/Mail/config/mbsyncrc</code></h4>
 <div class="outline-text-4" id="text-org1965db4">
 <p>
-This file possibly requires the most edits, it is about 50 lines long
-(including new lines). It controls how mbsync maps remote IMAP folders to
-the local Maildir. The following setup works wonderfully for GMail. I'm
-going to breakdown the file from the top. Starting with the basic account
-info:
+This file requires the most edits, it is about 50 lines long (including new
+lines). It controls how mbsync maps remote IMAP folders to the local
+Maildir. The following setup works wonderfully for GMail. I'm going to
+breakdown the file from the top. Starting with the basic account info:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-conf">IMAPaccount gmail
 host imap.gmail.com
 user aqeel.akber@gmail.com
-PassCmd <span style="color: #2d9574;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
+PassCmd <span style="color: #01a252;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-bundle.crt
 </pre>
@@ -290,7 +290,7 @@ them locally. These are called stores:
 account gmail
 
 MaildirStore gmail-local
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">trailing "/" is important</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">trailing "/" is important</span>
 Path ~/Mail/aqeel.akber@gmail.com/
 Inbox ~/Mail/aqeel.akber@gmail.com/Inbox
 </pre>
@@ -303,38 +303,38 @@ your own, and perhaps any reference to <code>gmail</code> to be consistent with
 </p>
 
 <p>
-The next is the bulk of the file. It is the mapping between folder on the
-IMAP store (Master) and a folder in the local store (Slave). For GMail based
+Next is the bulk of the file, it is the mapping between folder on the IMAP
+store (Master) and a folder in the local store (Slave). For GMail based
 accounts, it likely will require no more editing than making the names
 consistent with <code>IMAPaccount</code>. For other IMAP servers, you may need to edit
-the <code>Slave</code> line to match the remote folder correctly.
+the <code>Master</code> line to match the remote folder correctly.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-conf">Channel gmail-default
 Master :gmail-remote:
 Slave :gmail-local:
-Patterns % <span style="color: #2d9574;">"!Sent"</span> <span style="color: #2d9574;">"!Drafts"</span> <span style="color: #2d9574;">"!Trash"</span>
+Patterns % <span style="color: #01a252;">"!Sent"</span> <span style="color: #01a252;">"!Drafts"</span> <span style="color: #01a252;">"!Trash"</span>
 Create Both
 SyncState *
 Expunge Both
 
 Channel gmail-sent
-Master :gmail-remote:<span style="color: #2d9574;">"[Gmail]/Sent Mail"</span>
+Master :gmail-remote:<span style="color: #01a252;">"[Gmail]/Sent Mail"</span>
 Slave :gmail-local:Sent
 Create Slave
 SyncState *
 Expunge Both
 
 Channel gmail-drafts
-Master :gmail-remote:<span style="color: #2d9574;">"[Gmail]/Drafts"</span>
+Master :gmail-remote:<span style="color: #01a252;">"[Gmail]/Drafts"</span>
 Slave :gmail-local:Drafts
 Create Slave
 SyncState *
 Expunge Both
 
 Channel gmail-trash
-Master :gmail-remote:<span style="color: #2d9574;">"[Gmail]/Trash"</span>
+Master :gmail-remote:<span style="color: #01a252;">"[Gmail]/Trash"</span>
 Slave :gmail-local:Trash
 Create Slave
 SyncState *
@@ -379,7 +379,7 @@ host           smtp.gmail.com
 port           587
 from           aqeel.akber@gmail.com
 user           aqeel.akber@gmail.com
-passwordeval   <span style="color: #2d9574;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
+passwordeval   <span style="color: #01a252;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
 </pre>
 </div>
 </div>
@@ -391,30 +391,30 @@ passwordeval   <span style="color: #2d9574;">"gpg -q -d --no-tty ~/Mail/config/c
 <p>
 The last file to configure. You might need to edit <code>path</code> to reference your
 Linux username, <code>name</code> and <code>primary_email</code> of course, and finally <code>gpg_path</code>
-if you need. Something to note while here are the <code>tags</code> under <code>new</code> &#x2013;
-these are applied to newly downloaded emails after running <code>notmuch new</code>.
+if you need. Something to note while here are the <code>tags</code> listed under <code>new</code>
+&#x2013; these are applied to newly downloaded emails after running <code>notmuch new</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-conf">[<span style="color: #ba2f59; font-weight: bold;">database</span>]
-<span style="color: #715ab1;">path</span>=/home/user/Mail
+<pre class="src src-conf">[<span style="color: #fded02;">database</span>]
+<span style="color: #db2d20;">path</span>=/home/user/Mail
 
-[<span style="color: #ba2f59; font-weight: bold;">user</span>]
-<span style="color: #715ab1;">name</span>=Aqeel Akber
-<span style="color: #715ab1;">primary_email</span>=aqeel.akber@gmail.com
+[<span style="color: #fded02;">user</span>]
+<span style="color: #db2d20;">name</span>=Aqeel Akber
+<span style="color: #db2d20;">primary_email</span>=aqeel.akber@gmail.com
 
-[<span style="color: #ba2f59; font-weight: bold;">new</span>]
-<span style="color: #715ab1;">tags</span>=unread;inbox;new;
-<span style="color: #715ab1;">ignore</span>=
+[<span style="color: #fded02;">new</span>]
+<span style="color: #db2d20;">tags</span>=unread;inbox;new;
+<span style="color: #db2d20;">ignore</span>=
 
-[<span style="color: #ba2f59; font-weight: bold;">search</span>]
-<span style="color: #715ab1;">exclude_tags</span>=deleted;spam;
+[<span style="color: #fded02;">search</span>]
+<span style="color: #db2d20;">exclude_tags</span>=deleted;spam;
 
-[<span style="color: #ba2f59; font-weight: bold;">maildir</span>]
-<span style="color: #715ab1;">synchronize_flags</span>=true
+[<span style="color: #fded02;">maildir</span>]
+<span style="color: #db2d20;">synchronize_flags</span>=true
 
-[<span style="color: #ba2f59; font-weight: bold;">crypto</span>]
-<span style="color: #715ab1;">gpg_path</span>=/usr/bin/qubes-gpg-client
+[<span style="color: #fded02;">crypto</span>]
+<span style="color: #db2d20;">gpg_path</span>=/usr/bin/gpg
 </pre>
 </div>
 </div>
@@ -482,7 +482,7 @@ you use <a href="http://spacemacs.org">spacemacs</a> and can't wait to get start
 <div class="outline-text-2" id="text-orgd61d398">
 <p>
 Notmuch lets you search through your downloaded emails from the command line
-with powerful queries and tag them see <code>man notmuch tag</code> for more info. Also
+with powerful queries and tag them, see <code>man notmuch tag</code> for more info. Also
 notmuch supports running executables/scripts after particular actions using
 hooks, see <code>man notmuch hooks</code>. By using <code>notmuch tag</code> combined with a
 <code>post-new</code> script written in python you can do some pretty awesome things
@@ -492,102 +492,102 @@ really easily.
 <p>
 Try this, make a file at <code>~/Mail/.notmuch/hooks/post-new</code> with the following
 in it and make the file executable with <code>chmod +x</code>. This is an example of a
-really quick and dirty script that has served me quite well, <b>especially the
-"learn from" filter which (dumbly) learns and mimics my behaviour</b>. Before
-going fully down the rabbit hole with this, you might want read <a href="https://notmuchmail.org/getting-started/#index8h2">how to back up
-and restore your tags database</a>.
+quick and dirty script that has served me quite well, <b>especially the "learn
+from" filter which (dumbly) learns and mimics my behaviour</b>. Before going
+fully down the rabbit hole with this, you might want lean <a href="https://notmuchmail.org/getting-started/#index8h2">how to back up and
+restore your tags database</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #2aa1ae; background-color: #ecf3ec;">#</span><span style="color: #2aa1ae; background-color: #ecf3ec;">!/usr/bin/python3</span>
-<span style="color: #3a81c3; font-weight: bold;">import</span> subprocess
+<pre class="src src-python"><span style="color: #4a4543;">#</span><span style="color: #5c5855;">!/usr/bin/python3</span>
+<span style="color: #a16a94;">import</span> subprocess
 
-<span style="color: #3a81c3; font-weight: bold;">def</span> <span style="color: #6c3163; font-weight: bold;">nmtag</span><span style="color: #3a81c3;">(</span>tag : <span style="color: #3a81c3;">str</span>, query : <span style="color: #3a81c3;">str</span><span style="color: #3a81c3;">)</span>:
-  <span style="color: #2aa1ae;">"""Apply tag to all results of a notmuch query"""</span>
-  <span style="color: #715ab1;">tag</span> = tag.split<span style="color: #3a81c3;">(</span><span style="color: #2d9574;">" "</span><span style="color: #3a81c3;">)</span>
-  <span style="color: #715ab1;">cmd</span> = subprocess.run<span style="color: #3a81c3;">(</span><span style="color: #6c3163;">[</span><span style="color: #2d9574;">"notmuch"</span>, <span style="color: #2d9574;">"tag"</span><span style="color: #6c3163;">]</span> +
-                       tag + <span style="color: #6c3163;">[</span><span style="color: #2d9574;">"--"</span>, query<span style="color: #6c3163;">]</span><span style="color: #3a81c3;">)</span>
-  <span style="color: #3a81c3; font-weight: bold;">return</span> cmd
+<span style="color: #a16a94;">def</span> <span style="color: #01a0e4;">nmtag</span><span style="color: #a16a94;">(</span>tag : <span style="color: #b5e4f4;">str</span>, query : <span style="color: #b5e4f4;">str</span><span style="color: #a16a94;">)</span>:
+  <span style="color: #807d7c;">"""Apply tag to all results of a notmuch query"""</span>
+  <span style="color: #db2d20;">tag</span> = tag.split<span style="color: #a16a94;">(</span><span style="color: #01a252;">" "</span><span style="color: #a16a94;">)</span>
+  <span style="color: #db2d20;">cmd</span> = subprocess.run<span style="color: #a16a94;">(</span><span style="color: #01a0e4;">[</span><span style="color: #01a252;">"notmuch"</span>, <span style="color: #01a252;">"tag"</span><span style="color: #01a0e4;">]</span> +
+                       tag + <span style="color: #01a0e4;">[</span><span style="color: #01a252;">"--"</span>, query<span style="color: #01a0e4;">]</span><span style="color: #a16a94;">)</span>
+  <span style="color: #a16a94;">return</span> cmd
 
-<span style="color: #715ab1;">accname</span> = <span style="color: #2d9574;">"gmail"</span>
-<span style="color: #715ab1;">address</span> = <span style="color: #2d9574;">"aqeel.akber@gmail.com"</span>
+<span style="color: #db2d20;">accname</span> = <span style="color: #01a252;">"gmail"</span>
+<span style="color: #db2d20;">address</span> = <span style="color: #01a252;">"aqeel.akber@gmail.com"</span>
 
-<span style="color: #2aa1ae;">"""Start searching and tagging. When you're done with a particular subset of</span>
-<span style="color: #2aa1ae;">emails, remove the new tag so that it doesn't appear in subsequent queries.</span>
-<span style="color: #2aa1ae;">Working in this manner is simple but order matters.</span>
-<span style="color: #2aa1ae;">"""</span>
+<span style="color: #807d7c;">"""Start searching and tagging. When you're done with a particular subset of</span>
+<span style="color: #807d7c;">emails, remove the new tag so that it doesn't appear in subsequent queries.</span>
+<span style="color: #807d7c;">Working in this manner is simple but order matters.</span>
+<span style="color: #807d7c;">"""</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">tag account name</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+%s"</span> % <span style="color: #3a81c3;">(</span>accname<span style="color: #3a81c3;">)</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(to:%s OR from:%s) AND tag:new"</span> % <span style="color: #3a81c3;">(</span>address, address<span style="color: #3a81c3;">)</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">tag account name</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+%s"</span> % <span style="color: #a16a94;">(</span>accname<span style="color: #a16a94;">)</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(to:%s OR from:%s) AND tag:new"</span> % <span style="color: #a16a94;">(</span>address, address<span style="color: #a16a94;">)</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">from one of my accounts is probably important</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+inbox"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(from:%s) AND tag:new"</span> % address
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">from one of my accounts is probably important</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+inbox"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:%s) AND tag:new"</span> % address
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">unless it's sent mail</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+sent -unread -inbox -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(folder:%s/Sent) AND tag:new"</span> % accname
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">unless it's sent mail</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+sent -unread -inbox -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(folder:%s/Sent) AND tag:new"</span> % accname
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">tag things stored as drafts</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+draft -inbox -unread -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(folder:%s/Drafts) AND tag:new"</span> % accname
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">tag things stored as drafts</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+draft -inbox -unread -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(folder:%s/Drafts) AND tag:new"</span> % accname
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">also, if it's IMAP trash</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+trash -inbox -unread -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(folder:%s/Trash) AND tag:new"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">also, if it's IMAP trash</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+trash -inbox -unread -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(folder:%s/Trash) AND tag:new"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;">##</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">## </span><span style="color: #2aa1ae; background-color: #ecf3ec;">FILTERING</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">##</span>
+<span style="color: #4a4543;">##</span>
+<span style="color: #4a4543;">## </span><span style="color: #5c5855;">FILTERING</span>
+<span style="color: #4a4543;">##</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">I STRONGLY ENCOURAGE CALENDAR INVITES VIA EMAIL</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+calendar +filtering -inbox"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(attachment:.ics) AND tag:new"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">I STRONGLY ENCOURAGE CALENDAR INVITES VIA EMAIL</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+calendar +filtering -inbox"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(attachment:.ics) AND tag:new"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">LEARN MY BEHAVIOUR OVER TIME</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">Find email addresses in the database that have been tagged with LEARNFROM at</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">least 3 times. Tag new emails from these email addresses with the same tag.</span>
-<span style="color: #715ab1;">LEARNFROM</span> = <span style="color: #3a81c3;">[</span><span style="color: #2d9574;">"vip"</span>, <span style="color: #2d9574;">"human"</span>, <span style="color: #2d9574;">"client"</span><span style="color: #3a81c3;">]</span>
-<span style="color: #3a81c3; font-weight: bold;">for</span> t <span style="color: #3a81c3; font-weight: bold;">in</span> LEARNFROM:
-    <span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+%s -inbox -new"</span> % t
-    <span style="color: #715ab1;">prevfrom</span> = subprocess.run<span style="color: #3a81c3;">(</span><span style="color: #6c3163;">[</span><span style="color: #2d9574;">"notmuch"</span>,<span style="color: #2d9574;">"address"</span>,<span style="color: #2d9574;">"tag:"</span>+t<span style="color: #6c3163;">]</span>, stdout=subprocess.PIPE<span style="color: #3a81c3;">)</span>
-    <span style="color: #715ab1;">prevfrom</span> = prevfrom.stdout.decode<span style="color: #3a81c3;">(</span><span style="color: #2d9574;">"utf-8"</span><span style="color: #3a81c3;">)</span>.split<span style="color: #3a81c3;">(</span><span style="color: #2d9574;">"\n"</span><span style="color: #3a81c3;">)</span>
-    <span style="color: #715ab1;">prevfrom</span> = <span style="color: #3a81c3;">filter</span><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">lambda</span> x: <span style="color: #3a81c3;">len</span><span style="color: #6c3163;">(</span>x<span style="color: #6c3163;">)</span>&gt;<span style="color: #4e3163;">3</span>, prevfrom<span style="color: #3a81c3;">)</span>
-    <span style="color: #3a81c3; font-weight: bold;">for</span> f <span style="color: #3a81c3; font-weight: bold;">in</span> prevfrom:
-        <span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(from:%s) AND tag:new"</span> % f
-        nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">LEARN MY BEHAVIOUR OVER TIME</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">Find email addresses in the database that have been tagged with LEARNFROM at</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">least 3 times. Tag new emails from these email addresses with the same tag.</span>
+<span style="color: #db2d20;">LEARNFROM</span> = <span style="color: #a16a94;">[</span><span style="color: #01a252;">"vip"</span>, <span style="color: #01a252;">"human"</span>, <span style="color: #01a252;">"client"</span><span style="color: #a16a94;">]</span>
+<span style="color: #a16a94;">for</span> t <span style="color: #a16a94;">in</span> LEARNFROM:
+    <span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+%s -inbox -new"</span> % t
+    <span style="color: #db2d20;">prevfrom</span> = subprocess.run<span style="color: #a16a94;">(</span><span style="color: #01a0e4;">[</span><span style="color: #01a252;">"notmuch"</span>,<span style="color: #01a252;">"address"</span>,<span style="color: #01a252;">"tag:"</span>+t<span style="color: #01a0e4;">]</span>, stdout=subprocess.PIPE<span style="color: #a16a94;">)</span>
+    <span style="color: #db2d20;">prevfrom</span> = prevfrom.stdout.decode<span style="color: #a16a94;">(</span><span style="color: #01a252;">"utf-8"</span><span style="color: #a16a94;">)</span>.split<span style="color: #a16a94;">(</span><span style="color: #01a252;">"\n"</span><span style="color: #a16a94;">)</span>
+    <span style="color: #db2d20;">prevfrom</span> = <span style="color: #b5e4f4;">filter</span><span style="color: #a16a94;">(</span><span style="color: #a16a94;">lambda</span> x: <span style="color: #b5e4f4;">len</span><span style="color: #01a0e4;">(</span>x<span style="color: #01a0e4;">)</span>&gt;<span style="color: #e8bbd0;">3</span>, prevfrom<span style="color: #a16a94;">)</span>
+    <span style="color: #a16a94;">for</span> f <span style="color: #a16a94;">in</span> prevfrom:
+        <span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:%s) AND tag:new"</span> % f
+        nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">FILTER TWITTER</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+social -inbox -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(from:twitter) AND tag:new"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FILTER TWITTER</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+social -inbox -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:twitter) AND tag:new"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">FILTER SHOPPING UPDATES FROM BOTS</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+commerce -inbox -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(subject:receipt OR subject:invoice OR subject:order OR subject:'ship*' OR subject:'deliv*' OR from:auspost OR from:ebay) AND tag:new"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FILTER SHOPPING UPDATES FROM BOTS</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+commerce -inbox -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(subject:receipt OR subject:invoice OR subject:order OR subject:'ship*' OR subject:'deliv*' OR from:auspost OR from:ebay) AND tag:new"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">FILTER ALL OTHER GENERAL NOTIFICATIONS FROM BOTS</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+ping -inbox -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"(from:'notif*' OR from:reply OR from:noreply OR from:donotreply OR subject:notification OR subject:reply) AND tag:new"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FILTER ALL OTHER GENERAL NOTIFICATIONS FROM BOTS</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+ping -inbox -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:'notif*' OR from:reply OR from:noreply OR from:donotreply OR subject:notification OR subject:reply) AND tag:new"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">FINISHED ALL FILTERING</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"-filtering -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"tag:filtering"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FINISHED ALL FILTERING</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"-filtering -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"tag:filtering"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;"># </span><span style="color: #2aa1ae; background-color: #ecf3ec;">IF IT ISN'T FILTERED, PUT INBOX FOR THE HUMAN TO DEAL WITH IT.</span>
-<span style="color: #715ab1;">tag</span> = <span style="color: #2d9574;">"+inbox -new"</span>
-<span style="color: #715ab1;">query</span> = <span style="color: #2d9574;">"tag:new"</span>
-nmtag<span style="color: #3a81c3;">(</span>tag, query<span style="color: #3a81c3;">)</span>
+<span style="color: #4a4543;"># </span><span style="color: #5c5855;">IF IT ISN'T FILTERED, PUT INBOX FOR THE HUMAN TO DEAL WITH IT.</span>
+<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+inbox -new"</span>
+<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"tag:new"</span>
+nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
 </pre>
 </div>
 </div>
@@ -602,17 +602,17 @@ Email is a fundamental part of <a href="/tags#myos" style="font-variant : small-
 Qubes configuration of email is reduced to a single email account which
 simplifies the process. Further, by separating the task of viewing and composing
 emails from communication with the server and organising the emails has granted
-further flexibility. Software dependencies across myOS systems was briefly
-discussed which highlighted the possibility of aliasing software in
-configuration files to complete a task - this will be the topic of the next blog
-post.
+another level of flexibility. Software dependencies across myOS systems was
+briefly discussed which highlighted the possibility of aliasing software in
+configuration files to complete a task - this started a train of thought that
+will be the topic of the next blog post.
 </p>
 
 <p>
 Installation and configuration of <a href="https://github.com/admiralakber/myOS-email">myOS-email</a> was
 explained in detail. A notmuch tag + filtering script that learns and mimics
-your behaviour as well as including simple matching rules was given as an
-example highly effective method of organising mail with minimal effort.
+your behaviour, and uses simple matching rules was given as an example highly
+effective method of organising mail with minimal effort.
 </p>
 </div>
 </div>
