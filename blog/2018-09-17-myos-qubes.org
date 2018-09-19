@@ -3,7 +3,7 @@
 #+DATE: 2018-09-17
 #+JEKYLL_TAGS: myos lifehack workflow qubes
 #+JEKYLL_PUBLISHED: true
-#+SETUPFILE: ~/Blog/setupfile.org
+#+SETUPFILE: ~/Blog/src/setupfile.org
 #+JEKYLL_LAYOUT: post
 #+JEKYLL_COMMENTS: true
 
