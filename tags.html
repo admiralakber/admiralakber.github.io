@@ -5,35 +5,64 @@ permalink: tags
 ---
 
 <style>
-  body{
-    background:url('../assets/bg.jpg') no-repeat center center fixed;
-    -moz-background-size:cover;
-    -webkit-background-size:cover;
-    -o-background-size:cover;
-    background-size:cover;
-    overflow-x: hidden;
-  }
+ body{
+     background:url('../assets/bg.jpg') no-repeat center center fixed;
+     -moz-background-size:cover;
+     -webkit-background-size:cover;
+     -o-background-size:cover;
+     background-size:cover;
+     overflow-x: hidden;
+ }
+
+
+ .node {
+     stroke: #000;
+     stroke-width: 1.5px;
+ }
+
+ .link {
+     fill: none;
+     stroke: #000;
+ }
+ .svg-container {
+     display: inline-block;
+     position: relative;
+     width: 100%;
+     vertical-align: top;
+     overflow: hidden;
+ }
+ .svg-content-responsive {
+     display: inline-block;
+     position: absolute;
+     top: 10px;
+     left: 0;
+ }
 </style>
 
 <div class="wrap-center">
-  <h1>{{ page.title }}</h1>
-  <br>
-
-  {% capture tags %}
-  {% for tag in site.tags %}
-  {{ tag[0] }}
-  {% endfor %}
-  {% endcapture %}
-  {% assign sortedtags = tags | split:' ' | sort %}
-
-  {% for tag in sortedtags %}
-  <h2 id="{{ tag }}" style="font-variant: small-caps;">{{ tag }}</h2>
-  <ul>
-    {% for post in site.tags[tag] %}
-    <li>
-      <span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li>
+    <div name="tagnet" class="svg-container">
+        <h1>Topic connectivity</h1>
+        <svg width="1000" height="300" class="svg-container-responsive"></svg>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="/js/tag-network.js"></script>
+    </div>
+    <h1>{{ page.title }}</h1>
+    <br>
+    {% capture tags %}
+    {% for tag in site.tags %}
+    {{ tag[0] }}
     {% endfor %}
-  </ul>
-  {% endfor %}
+    {% endcapture %}
+    {% assign sortedtags = tags | split:' ' | sort %}
+
+    {% for tag in sortedtags %}
+    <h2 id="{{ tag }}" style="font-variant: small-caps;">{{ tag }}</h2>
+    <ul>
+        {% for post in site.tags[tag] %}
+        <li>
+            <span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
 </div>
