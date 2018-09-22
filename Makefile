@@ -4,7 +4,7 @@ site:
 	jekyll build
 
 serve:
-	jekyll serve
+	jekyll serve --future
 
 clean:
 	rm -rf _site

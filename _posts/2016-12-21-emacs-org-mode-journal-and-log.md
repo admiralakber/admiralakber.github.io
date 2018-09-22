@@ -6,7 +6,7 @@ comments: true
 date: 2016-12-21 15:00 +1000
 mathjax: false
 tags:
-  - workflow
+  - lifehack
   - emacs
 ---
 
@@ -140,8 +140,8 @@ plain text is easily compressible.
 (setq version-control t        ;; OpenVMS-esque
       backup-by-copying t      ;; Copy-on-write-esque
       kept-new-versions 64     ;; Indeliable-ink-esque
-      kept-old-versions 0      ;; 
-      delete-old-versions nil  ;; 
+      kept-old-versions 0      ;;
+      delete-old-versions nil  ;;
       )
 (setq backup-directory-alist   ;; Save backups in $(pwd)/.bak
       '(("." . ".bak"))        ;;
@@ -252,16 +252,16 @@ here to suit your needs.
 (setq journal-author "Aqeel Akber")
 
 ;; This is the base folder where all your "books"
-;; will be stored. 
+;; will be stored.
 (setq journal-base-dir "~/ORG/")
 
 
 ;; These are your "books" (folders), add as many as you like.
 ;; Note: "sub volumes" are acheivable with sub folders.
 (setq journal-books '("nuclphys"
-		      "nuclphys/labr"
-		      "personal"
-		      "saferad"))
+          "nuclphys/labr"
+          "personal"
+          "saferad"))
 
 ;; Functions for journal
 (defun get-journal-file-today (book)
@@ -269,7 +269,7 @@ here to suit your needs.
   (interactive (list (completing-read "Book: " journal-books) ))
   (expand-file-name
    (concat journal-base-dir book "/J"
-	   (format-time-string "%Y%m%d") ".org" )) )
+     (format-time-string "%Y%m%d") ".org" )) )
 
 (defun journal-today ()
   "Load todays journal entry for book"
@@ -279,8 +279,8 @@ here to suit your needs.
 (defun journal-entry-date ()
   "Inserts the journal heading based on the file's name."
   (when (string-match
-	 "\\(J\\)\\(20[0-9][0-9]\\)\\([0-9][0-9]\\)\\([0-9][0-9]\\)\\(.org\\)"
-	 (buffer-name))
+   "\\(J\\)\\(20[0-9][0-9]\\)\\([0-9][0-9]\\)\\([0-9][0-9]\\)\\(.org\\)"
+   (buffer-name))
     (let ((year  (string-to-number (match-string 2 (buffer-name))))
           (month (string-to-number (match-string 3 (buffer-name))))
           (day   (string-to-number (match-string 4 (buffer-name))))
@@ -296,16 +296,16 @@ here to suit your needs.
      '("Short description: "
        "#+TITLE: Journal Entry - "
        (car
-	(last
-	 (split-string
-	  (file-name-directory buffer-file-name) "/ORG/"))) \n
+  (last
+   (split-string
+    (file-name-directory buffer-file-name) "/ORG/"))) \n
        (concat "#+AUTHOR: " journal-author) \n
        "#+DATE: " (journal-entry-date) \n
        "#+FILETAGS: "
        (car
-	(last
-	 (split-string
-	  (file-name-directory buffer-file-name) "/ORG/"))) \n \n
+  (last
+   (split-string
+    (file-name-directory buffer-file-name) "/ORG/"))) \n \n
        > _ \n
        )))
 
@@ -320,8 +320,8 @@ it and that's the setup done.
 ``` elisp
 ;; Set Org directories [Remember to update with journal books]
 (setq org-agenda-files (list "~/ORG/nuclphys"
-			     "~/ORG/nuclphys/labr"
-			     "~/ORG/personal"
+           "~/ORG/nuclphys/labr"
+           "~/ORG/personal"
                              "~/ORG/saferad"))
 ```
 
@@ -332,7 +332,7 @@ are very well documented. What I have focused on describing in this
 section is the small subset of capabilities that are relevant to this
 article. If it looks like something you like, then I strongly
 encourage you look up other org-mode tutories to get a taste of what
-else can be done. 
+else can be done.
 
 ### Quick start
 

@@ -240,9 +240,9 @@ the temporary file.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell">$<span style="color: #db2d20;">EDITOR</span> mypass.txt
-gpg -r <span style="color: #01a252;">"Your Name <a href="mailto:youremail%40example.com">&lt;youremail@example.com&gt;</a>"</span> -e mypass.txt &gt; credentials.gpg
-shred -n <span style="color: #e8bbd0;">200</span> -z -u mypass.txt
+<pre class="src src-shell">$<span style="color: #7590db;">EDITOR</span> mypass.txt
+gpg -r <span style="color: #2d9574;">"Your Name <a href="mailto:youremail%40example.com">&lt;youremail@example.com&gt;</a>"</span> -e mypass.txt &gt; credentials.gpg
+shred -n <span style="color: #a45bad;">200</span> -z -u mypass.txt
 </pre>
 </div>
 </div>
@@ -262,7 +262,7 @@ breakdown the file from the top. Starting with the basic account info:
 <pre class="src src-conf">IMAPaccount gmail
 host imap.gmail.com
 user aqeel.akber@gmail.com
-PassCmd <span style="color: #01a252;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
+PassCmd <span style="color: #2d9574;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-bundle.crt
 </pre>
@@ -290,7 +290,7 @@ them locally. These are called stores:
 account gmail
 
 MaildirStore gmail-local
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">trailing "/" is important</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">trailing "/" is important</span>
 Path ~/Mail/aqeel.akber@gmail.com/
 Inbox ~/Mail/aqeel.akber@gmail.com/Inbox
 </pre>
@@ -314,27 +314,27 @@ the <code>Master</code> line to match the remote folder correctly.
 <pre class="src src-conf">Channel gmail-default
 Master :gmail-remote:
 Slave :gmail-local:
-Patterns % <span style="color: #01a252;">"!Sent"</span> <span style="color: #01a252;">"!Drafts"</span> <span style="color: #01a252;">"!Trash"</span>
+Patterns % <span style="color: #2d9574;">"!Sent"</span> <span style="color: #2d9574;">"!Drafts"</span> <span style="color: #2d9574;">"!Trash"</span>
 Create Both
 SyncState *
 Expunge Both
 
 Channel gmail-sent
-Master :gmail-remote:<span style="color: #01a252;">"[Gmail]/Sent Mail"</span>
+Master :gmail-remote:<span style="color: #2d9574;">"[Gmail]/Sent Mail"</span>
 Slave :gmail-local:Sent
 Create Slave
 SyncState *
 Expunge Both
 
 Channel gmail-drafts
-Master :gmail-remote:<span style="color: #01a252;">"[Gmail]/Drafts"</span>
+Master :gmail-remote:<span style="color: #2d9574;">"[Gmail]/Drafts"</span>
 Slave :gmail-local:Drafts
 Create Slave
 SyncState *
 Expunge Both
 
 Channel gmail-trash
-Master :gmail-remote:<span style="color: #01a252;">"[Gmail]/Trash"</span>
+Master :gmail-remote:<span style="color: #2d9574;">"[Gmail]/Trash"</span>
 Slave :gmail-local:Trash
 Create Slave
 SyncState *
@@ -379,7 +379,7 @@ host           smtp.gmail.com
 port           587
 from           aqeel.akber@gmail.com
 user           aqeel.akber@gmail.com
-passwordeval   <span style="color: #01a252;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
+passwordeval   <span style="color: #2d9574;">"gpg -q -d --no-tty ~/Mail/config/credentials.gpg"</span>
 </pre>
 </div>
 </div>
@@ -396,25 +396,25 @@ if you need. Something to note while here are the <code>tags</code> listed under
 </p>
 
 <div class="org-src-container">
-<pre class="src src-conf">[<span style="color: #fded02;">database</span>]
-<span style="color: #db2d20;">path</span>=/home/user/Mail
+<pre class="src src-conf">[<span style="color: #ce537a; font-weight: bold;">database</span>]
+<span style="color: #7590db;">path</span>=/home/user/Mail
 
-[<span style="color: #fded02;">user</span>]
-<span style="color: #db2d20;">name</span>=Aqeel Akber
-<span style="color: #db2d20;">primary_email</span>=aqeel.akber@gmail.com
+[<span style="color: #ce537a; font-weight: bold;">user</span>]
+<span style="color: #7590db;">name</span>=Aqeel Akber
+<span style="color: #7590db;">primary_email</span>=aqeel.akber@gmail.com
 
-[<span style="color: #fded02;">new</span>]
-<span style="color: #db2d20;">tags</span>=unread;inbox;new;
-<span style="color: #db2d20;">ignore</span>=
+[<span style="color: #ce537a; font-weight: bold;">new</span>]
+<span style="color: #7590db;">tags</span>=unread;inbox;new;
+<span style="color: #7590db;">ignore</span>=
 
-[<span style="color: #fded02;">search</span>]
-<span style="color: #db2d20;">exclude_tags</span>=deleted;spam;
+[<span style="color: #ce537a; font-weight: bold;">search</span>]
+<span style="color: #7590db;">exclude_tags</span>=deleted;spam;
 
-[<span style="color: #fded02;">maildir</span>]
-<span style="color: #db2d20;">synchronize_flags</span>=true
+[<span style="color: #ce537a; font-weight: bold;">maildir</span>]
+<span style="color: #7590db;">synchronize_flags</span>=true
 
-[<span style="color: #fded02;">crypto</span>]
-<span style="color: #db2d20;">gpg_path</span>=/usr/bin/gpg
+[<span style="color: #ce537a; font-weight: bold;">crypto</span>]
+<span style="color: #7590db;">gpg_path</span>=/usr/bin/gpg
 </pre>
 </div>
 </div>
@@ -499,95 +499,95 @@ restore your tags database</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4a4543;">#</span><span style="color: #5c5855;">!/usr/bin/python3</span>
-<span style="color: #a16a94;">import</span> subprocess
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">!/usr/bin/python3</span>
+<span style="color: #4f97d7; font-weight: bold;">import</span> subprocess
 
-<span style="color: #a16a94;">def</span> <span style="color: #01a0e4;">nmtag</span><span style="color: #a16a94;">(</span>tag : <span style="color: #b5e4f4;">str</span>, query : <span style="color: #b5e4f4;">str</span><span style="color: #a16a94;">)</span>:
-  <span style="color: #807d7c;">"""Apply tag to all results of a notmuch query"""</span>
-  <span style="color: #db2d20;">tag</span> = tag.split<span style="color: #a16a94;">(</span><span style="color: #01a252;">" "</span><span style="color: #a16a94;">)</span>
-  <span style="color: #db2d20;">cmd</span> = subprocess.run<span style="color: #a16a94;">(</span><span style="color: #01a0e4;">[</span><span style="color: #01a252;">"notmuch"</span>, <span style="color: #01a252;">"tag"</span><span style="color: #01a0e4;">]</span> +
-                       tag + <span style="color: #01a0e4;">[</span><span style="color: #01a252;">"--"</span>, query<span style="color: #01a0e4;">]</span><span style="color: #a16a94;">)</span>
-  <span style="color: #a16a94;">return</span> cmd
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">nmtag</span><span style="color: #4f97d7;">(</span>tag : <span style="color: #4f97d7;">str</span>, query : <span style="color: #4f97d7;">str</span><span style="color: #4f97d7;">)</span>:
+  <span style="color: #2aa1ae;">"""Apply tag to all results of a notmuch query"""</span>
+  <span style="color: #7590db;">tag</span> = tag.split<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">" "</span><span style="color: #4f97d7;">)</span>
+  <span style="color: #7590db;">cmd</span> = subprocess.run<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">"notmuch"</span>, <span style="color: #2d9574;">"tag"</span><span style="color: #bc6ec5;">]</span> +
+                       tag + <span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">"--"</span>, query<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> cmd
 
-<span style="color: #db2d20;">accname</span> = <span style="color: #01a252;">"gmail"</span>
-<span style="color: #db2d20;">address</span> = <span style="color: #01a252;">"aqeel.akber@gmail.com"</span>
+<span style="color: #7590db;">accname</span> = <span style="color: #2d9574;">"gmail"</span>
+<span style="color: #7590db;">address</span> = <span style="color: #2d9574;">"aqeel.akber@gmail.com"</span>
 
-<span style="color: #807d7c;">"""Start searching and tagging. When you're done with a particular subset of</span>
-<span style="color: #807d7c;">emails, remove the new tag so that it doesn't appear in subsequent queries.</span>
-<span style="color: #807d7c;">Working in this manner is simple but order matters.</span>
-<span style="color: #807d7c;">"""</span>
+<span style="color: #2aa1ae;">"""Start searching and tagging. When you're done with a particular subset of</span>
+<span style="color: #2aa1ae;">emails, remove the new tag so that it doesn't appear in subsequent queries.</span>
+<span style="color: #2aa1ae;">Working in this manner is simple but order matters.</span>
+<span style="color: #2aa1ae;">"""</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">tag account name</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+%s"</span> % <span style="color: #a16a94;">(</span>accname<span style="color: #a16a94;">)</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(to:%s OR from:%s) AND tag:new"</span> % <span style="color: #a16a94;">(</span>address, address<span style="color: #a16a94;">)</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">tag account name</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+%s"</span> % <span style="color: #4f97d7;">(</span>accname<span style="color: #4f97d7;">)</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(to:%s OR from:%s) AND tag:new"</span> % <span style="color: #4f97d7;">(</span>address, address<span style="color: #4f97d7;">)</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">from one of my accounts is probably important</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+inbox"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:%s) AND tag:new"</span> % address
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">from one of my accounts is probably important</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+inbox"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(from:%s) AND tag:new"</span> % address
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">unless it's sent mail</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+sent -unread -inbox -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(folder:%s/Sent) AND tag:new"</span> % accname
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">unless it's sent mail</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+sent -unread -inbox -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(folder:%s/Sent) AND tag:new"</span> % accname
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">tag things stored as drafts</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+draft -inbox -unread -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(folder:%s/Drafts) AND tag:new"</span> % accname
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">tag things stored as drafts</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+draft -inbox -unread -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(folder:%s/Drafts) AND tag:new"</span> % accname
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">also, if it's IMAP trash</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+trash -inbox -unread -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(folder:%s/Trash) AND tag:new"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">also, if it's IMAP trash</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+trash -inbox -unread -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(folder:%s/Trash) AND tag:new"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;">##</span>
-<span style="color: #4a4543;">## </span><span style="color: #5c5855;">FILTERING</span>
-<span style="color: #4a4543;">##</span>
+<span style="color: #2aa1ae; background-color: #292e34;">##</span>
+<span style="color: #2aa1ae; background-color: #292e34;">## </span><span style="color: #2aa1ae; background-color: #292e34;">FILTERING</span>
+<span style="color: #2aa1ae; background-color: #292e34;">##</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">I STRONGLY ENCOURAGE CALENDAR INVITES VIA EMAIL</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+calendar +filtering -inbox"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(attachment:.ics) AND tag:new"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">I STRONGLY ENCOURAGE CALENDAR INVITES VIA EMAIL</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+calendar +filtering -inbox"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(attachment:.ics) AND tag:new"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">LEARN MY BEHAVIOUR OVER TIME</span>
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">Find email addresses in the database that have been tagged with LEARNFROM at</span>
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">least 3 times. Tag new emails from these email addresses with the same tag.</span>
-<span style="color: #db2d20;">LEARNFROM</span> = <span style="color: #a16a94;">[</span><span style="color: #01a252;">"vip"</span>, <span style="color: #01a252;">"human"</span>, <span style="color: #01a252;">"client"</span><span style="color: #a16a94;">]</span>
-<span style="color: #a16a94;">for</span> t <span style="color: #a16a94;">in</span> LEARNFROM:
-    <span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+%s -inbox -new"</span> % t
-    <span style="color: #db2d20;">prevfrom</span> = subprocess.run<span style="color: #a16a94;">(</span><span style="color: #01a0e4;">[</span><span style="color: #01a252;">"notmuch"</span>,<span style="color: #01a252;">"address"</span>,<span style="color: #01a252;">"tag:"</span>+t<span style="color: #01a0e4;">]</span>, stdout=subprocess.PIPE<span style="color: #a16a94;">)</span>
-    <span style="color: #db2d20;">prevfrom</span> = prevfrom.stdout.decode<span style="color: #a16a94;">(</span><span style="color: #01a252;">"utf-8"</span><span style="color: #a16a94;">)</span>.split<span style="color: #a16a94;">(</span><span style="color: #01a252;">"\n"</span><span style="color: #a16a94;">)</span>
-    <span style="color: #db2d20;">prevfrom</span> = <span style="color: #b5e4f4;">filter</span><span style="color: #a16a94;">(</span><span style="color: #a16a94;">lambda</span> x: <span style="color: #b5e4f4;">len</span><span style="color: #01a0e4;">(</span>x<span style="color: #01a0e4;">)</span>&gt;<span style="color: #e8bbd0;">3</span>, prevfrom<span style="color: #a16a94;">)</span>
-    <span style="color: #a16a94;">for</span> f <span style="color: #a16a94;">in</span> prevfrom:
-        <span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:%s) AND tag:new"</span> % f
-        nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">LEARN MY BEHAVIOUR OVER TIME</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Find email addresses in the database that have been tagged with LEARNFROM at</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">least 3 times. Tag new emails from these email addresses with the same tag.</span>
+<span style="color: #7590db;">LEARNFROM</span> = <span style="color: #4f97d7;">[</span><span style="color: #2d9574;">"vip"</span>, <span style="color: #2d9574;">"human"</span>, <span style="color: #2d9574;">"client"</span><span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">for</span> t <span style="color: #4f97d7; font-weight: bold;">in</span> LEARNFROM:
+    <span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+%s -inbox -new"</span> % t
+    <span style="color: #7590db;">prevfrom</span> = subprocess.run<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">"notmuch"</span>,<span style="color: #2d9574;">"address"</span>,<span style="color: #2d9574;">"tag:"</span>+t<span style="color: #bc6ec5;">]</span>, stdout=subprocess.PIPE<span style="color: #4f97d7;">)</span>
+    <span style="color: #7590db;">prevfrom</span> = prevfrom.stdout.decode<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"utf-8"</span><span style="color: #4f97d7;">)</span>.split<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"\n"</span><span style="color: #4f97d7;">)</span>
+    <span style="color: #7590db;">prevfrom</span> = <span style="color: #4f97d7;">filter</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">lambda</span> x: <span style="color: #4f97d7;">len</span><span style="color: #bc6ec5;">(</span>x<span style="color: #bc6ec5;">)</span>&gt;<span style="color: #a45bad;">3</span>, prevfrom<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">for</span> f <span style="color: #4f97d7; font-weight: bold;">in</span> prevfrom:
+        <span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(from:%s) AND tag:new"</span> % f
+        nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FILTER TWITTER</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+social -inbox -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:twitter) AND tag:new"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">FILTER TWITTER</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+social -inbox -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(from:twitter) AND tag:new"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FILTER SHOPPING UPDATES FROM BOTS</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+commerce -inbox -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(subject:receipt OR subject:invoice OR subject:order OR subject:'ship*' OR subject:'deliv*' OR from:auspost OR from:ebay) AND tag:new"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">FILTER SHOPPING UPDATES FROM BOTS</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+commerce -inbox -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(subject:receipt OR subject:invoice OR subject:order OR subject:'ship*' OR subject:'deliv*' OR from:auspost OR from:ebay) AND tag:new"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FILTER ALL OTHER GENERAL NOTIFICATIONS FROM BOTS</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+ping -inbox -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"(from:'notif*' OR from:reply OR from:noreply OR from:donotreply OR subject:notification OR subject:reply) AND tag:new"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">FILTER ALL OTHER GENERAL NOTIFICATIONS FROM BOTS</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+ping -inbox -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"(from:'notif*' OR from:reply OR from:noreply OR from:donotreply OR subject:notification OR subject:reply) AND tag:new"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">FINISHED ALL FILTERING</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"-filtering -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"tag:filtering"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">FINISHED ALL FILTERING</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"-filtering -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"tag:filtering"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 
-<span style="color: #4a4543;"># </span><span style="color: #5c5855;">IF IT ISN'T FILTERED, PUT INBOX FOR THE HUMAN TO DEAL WITH IT.</span>
-<span style="color: #db2d20;">tag</span> = <span style="color: #01a252;">"+inbox -new"</span>
-<span style="color: #db2d20;">query</span> = <span style="color: #01a252;">"tag:new"</span>
-nmtag<span style="color: #a16a94;">(</span>tag, query<span style="color: #a16a94;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">IF IT ISN'T FILTERED, PUT INBOX FOR THE HUMAN TO DEAL WITH IT.</span>
+<span style="color: #7590db;">tag</span> = <span style="color: #2d9574;">"+inbox -new"</span>
+<span style="color: #7590db;">query</span> = <span style="color: #2d9574;">"tag:new"</span>
+nmtag<span style="color: #4f97d7;">(</span>tag, query<span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 </div>

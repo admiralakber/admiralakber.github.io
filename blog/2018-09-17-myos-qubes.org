@@ -1,7 +1,7 @@
 #+TITLE: myOS / Qubes and the Laptop
 #+AUTHOR: Aqeel Akber <aqeel.akber@gmail.com>
 #+DATE: 2018-09-17
-#+JEKYLL_TAGS: myos lifehack workflow qubes
+#+JEKYLL_TAGS: myos lifehack qubes
 #+JEKYLL_PUBLISHED: true
 #+SETUPFILE: ~/Blog/src/setupfile.org
 #+JEKYLL_LAYOUT: post
@@ -96,26 +96,14 @@ Jumping right to it.
   start a new role at a company, one of the first things they do for you is set
   up an email account. This brings me to my first theorem:
 
-   #+BEGIN_SRC keypoint
-   myOS / theorem 1
-   An email account provides an interface for the outside world for you to send and receive tasks and work.
-   #+END_SRC
+  #+INCLUDE: "../myos.org::#theorem-1" :only-contents t
 
    So for every role/hat/character I play in the world I have an email account
    for input+output. To ensure it's actually getting to Aqeel the human, it must
    be associated with my [[https://pgp.mit.edu/pks/lookup?search=0x14FC5B7CFED383A3][PGP Identity]]. I'm liking this character-human relation
    so let's go with that for my first policy:
 
-   #+BEGIN_SRC keypoint
-   myOS / policy 1
-   For each character of the human Aqeel Akber there is:
-     - an email account associated on PGP Identity 0x14FC5B7CFED383A3
-     - a qube on digital::device::laptop::distro
-   #+END_SRC
-
-   *Please don't trust the above statement of my PGP Identity blindly*. Better,
-    cross-check it [[https://github.com/admiralakber/admiralakber.github.io/blob/master/blog/2018-09-17-myos-qubes.org][with the PGP signed git commit and original org file that
-    generates this webpage]].
+   #+INCLUDE: "../myos.org::#policy-1" :only-contents t
 
 * Conclusion
 
