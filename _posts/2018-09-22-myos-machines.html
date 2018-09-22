@@ -1,0 +1,126 @@
+---
+title: "Delegating work to machines and becoming a superhuman"
+date: 2018-09-22
+layout: post
+categories:
+tags:
+- myos
+- lifehack
+- musings
+published: true
+comments:
+---
+<p>
+If you took the title to its extremity it's impossible to live in this day of
+age not having delegated some work to a machine. Take for example the delivery
+of this document, it's highly unlikely a human is dictating it to you purely
+from memory. When I was writing about <a href="{% post_url 2018-09-20-myos-email %}">my email
+setup</a> it started a train of thought that I wanted to formalise into
+<a href="/tags#myos" style="font-variant : small-caps;">myos</a>. I'm interested in creating small machines that assist in
+completing a task. I want to reduce the amount of energy I expend on tasks i.e.
+I want to work less!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / definition work
+Work is expending energy.
+</pre>
+</div>
+
+<p>
+I am however what some may call a <i>workaholic</i>, following the above definition I
+can tell you that's absolutely not right. <b>I'm a <i>taskaholic</i></b>. I love seeing
+the results of my work fulfilling a purpose, and I am often (but not always)
+privileged enough to be able to choose tasks that fulfill a purpose that I
+believe in. Completing tasks I believe in gives me joy and does wonders for my
+mental state.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / definition task
+A task is a request for work to create a result for a purpose.
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / theorem 2
+To maximise efficiency towards reaching your goals:
+  - only work for a task
+  - only accept tasks with purpose that you accept as a human
+</pre>
+</div>
+
+<p>
+If you don't believe in encryption, don't bother doing it. I personally do as is
+reflected in policies I have derived from <a href="/myos">earlier
+theorems</a>. There is one more stop on this train of thought.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / theorem 3
+Your energy resource can be extended to superhuman by delegating to other humans or machines.
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / definition machine
+A machine is a tool capable of doing work to produce a result.
+</pre>
+</div>
+
+<p>
+The above is simple but powerful. I can create machines, therefore I have the
+ability to increase my own capacity. To create a machine requires work. To
+efficiently create machines, they should be able to complete a task as their
+purpose. Completion of a task means to create a result, so the machine must be
+able to produce a result.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-keypoint">myOS / policy 2
+A machine is created as the result of a task. The purpose of the task is create a machine capable of completing another task.
+</pre>
+</div>
+
+<p>
+myOS / policy 2 ensures that I'm not wasting energy making machines for no
+purpose. Machines don't have to be complicated. A simple machine is an alias or
+wrapper for software. Doing this grants the flexibility of switching out
+backends to the machine without having to reconfigure systems that call upon it
+to complete tasks. For example, <a href="{% post_url 2018-09-20-myos-email %}">Table 3 in my
+last post</a> will become:
+</p>
+
+<table id="org23e2a0f" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Machines that produce results to complete tasks from system <code>myOS / email</code></caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Email Task</th>
+<th scope="col" class="org-center">Machine</th>
+<th scope="col" class="org-center">Result</th>
+<th scope="col" class="org-center">Backend</th>
+<th scope="col" class="org-center">Configuration Repository</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">Credentials encryption</td>
+<td class="org-center">gpg-machine</td>
+<td class="org-center">Decrypt string</td>
+<td class="org-center"><a href="https://www.qubes-os.org/doc/split-gpg/">qubes-split-gpg</a></td>
+<td class="org-center">myOS-qubes</td>
+</tr>
+</tbody>
+</table>

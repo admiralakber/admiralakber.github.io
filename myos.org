@@ -1,0 +1,115 @@
+#+TITLE: My Operating System
+#+AUTHOR: Aqeel Akber
+#+SETUPFILE: ~/Blog/src/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_TAGS: myos
+#+JEKYLL_PUBLISHED: true
+
+* Table of Contents                                        :TOC_4_gh:noexport:
+- [[#definitions][Definitions]]
+  - [[#work][work]]
+  - [[#task][task]]
+  - [[#machine][machine]]
+  - [[#system][system]]
+- [[#theorems][Theorems]]
+  - [[#one][one]]
+  - [[#two][two]]
+  - [[#three][three]]
+- [[#policies][Policies]]
+  - [[#one-1][one]]
+  - [[#two-1][two]]
+
+* Definitions
+** work
+   :PROPERTIES:
+   :CUSTOM_ID: definition-work
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / definition work
+   Work is expending energy.
+   #+END_SRC
+** task
+   :PROPERTIES:
+   :CUSTOM_ID: definition-task
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / definition task
+   A task is a request for work to create a result for a purpose.
+   #+END_SRC
+** machine
+   :PROPERTIES:
+   :CUSTOM_ID: definition-machine
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / definition machine
+   A machine is a tool capable of doing work to produce a result.
+   #+END_SRC
+** system
+   :PROPERTIES:
+   :CUSTOM_ID: definition-system
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / definition system
+   A system is a collection of tools configured to complete a category of tasks.
+   #+END_SRC
+
+* Theorems
+** one
+   :PROPERTIES:
+   :CUSTOM_ID: theorem-1
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / theorem 1
+   An email account provides an interface for the outside world for you to send and receive tasks and work.
+   #+END_SRC
+** two
+   :PROPERTIES:
+   :CUSTOM_ID: theorem-2
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / theorem 2
+   To maximise efficiency towards reaching your goals:
+     - only work for a task
+     - only accept tasks with purpose that you accept as a human
+   #+END_SRC
+** three
+   :PROPERTIES:
+   :CUSTOM_ID: theorem-3
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / theorem 3
+   Your energy resource can be extended to superhuman by delegating to other humans or machines.
+   #+END_SRC
+
+* Policies
+** one
+   :PROPERTIES:
+   :CUSTOM_ID: policy-1
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / policy 1
+   For each character of the human Aqeel Akber there is:
+     - an email account associated on PGP Identity 0x14FC5B7CFED383A3
+     - a qube on digital::device::laptop::distro
+   #+END_SRC
+
+   *Please don't trust the above statement of my PGP Identity blindly*. Better,
+    cross-check it with the [[https://github.com/admiralakber/admiralakber.github.io/blob/master/myos.org][signed PGP commit and original org file used to
+    generate this page.]]
+** two
+   :PROPERTIES:
+   :CUSTOM_ID: policy-2
+   :END:
+
+   #+BEGIN_SRC keypoint
+   myOS / policy 2
+   A machine is created as the result of a task. The purpose of the task is create a machine capable of completing another task.
+   #+END_SRC

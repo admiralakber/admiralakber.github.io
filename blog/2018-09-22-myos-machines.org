@@ -1,0 +1,59 @@
+#+TITLE: Delegating work to machines and becoming a superhuman
+#+DATE: 2018-09-22
+#+SETUPFILE: ~/Blog/src/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES:
+#+JEKYLL_TAGS: myos lifehack musings
+#+JEKYLL_PUBLISHED: true
+
+If you took the title to its extremity it's impossible to live in this day of
+age not having delegated some work to a machine. Take for example the delivery
+of this document, it's highly unlikely a human is dictating it to you purely
+from memory. When I was writing about {{{postlink(2018-09-20-myos-email,my email
+setup)}}} it started a train of thought that I wanted to formalise into
+{{{taglink(myos)}}}. I'm interested in creating small machines that assist in
+completing a task. I want to reduce the amount of energy I expend on tasks i.e.
+I want to work less!
+
+#+INCLUDE: "../myos.org::#definition-work" :only-contents t
+
+I am however what some may call a /workaholic/, following the above definition I
+can tell you that's absolutely not right. *I'm a /taskaholic/*. I love seeing
+the results of my work fulfilling a purpose, and I am often (but not always)
+privileged enough to be able to choose tasks that fulfill a purpose that I
+believe in. Completing tasks I believe in gives me joy and does wonders for my
+mental state.
+
+#+INCLUDE: "../myos.org::#definition-task" :only-contents t
+
+#+INCLUDE: "../myos.org::#theorem-2" :only-contents t
+
+If you don't believe in encryption, don't bother doing it. I personally do as is
+reflected in policies I have derived from @@html:<a href="/myos">earlier
+theorems</a>@@. There is one more stop on this train of thought.
+
+#+INCLUDE: "../myos.org::#theorem-3" :only-contents t
+
+#+INCLUDE: "../myos.org::#definition-machine" :only-contents t
+
+The above is simple but powerful. I can create machines, therefore I have the
+ability to increase my own capacity. To create a machine requires work. To
+efficiently create machines, they should be able to complete a task as their
+purpose. Completion of a task means to create a result, so the machine must be
+able to produce a result.
+
+#+INCLUDE: "../myos.org::#policy-2" :only-contents t
+
+myOS / policy 2 ensures that I'm not wasting energy making machines for no
+purpose. Machines don't have to be complicated. A simple machine is an alias or
+wrapper for software. Doing this grants the flexibility of switching out
+backends to the machine without having to reconfigure systems that call upon it
+to complete tasks. For example, {{{postlink(2018-09-20-myos-email,Table 3 in my
+last post)}}} will become:
+
+#+CAPTION: Machines that produce results to complete tasks from system ~myOS / email~
+#+NAME: tbl:myos-email-util-machines
+| Email Task             | Machine     | Result         | Backend         | Configuration Repository |
+|------------------------+-------------+----------------+-----------------+--------------------------|
+| <c>                    | <c>         | <c>            | <c>             | <c>                      |
+| Credentials encryption | gpg-machine | Decrypt string | [[https://www.qubes-os.org/doc/split-gpg/][qubes-split-gpg]] | myOS-qubes               |
