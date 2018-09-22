@@ -137,7 +137,7 @@ div.page-content a:hover { color: firebrick; }
 
 /* center wrap */
 div.wrap-center {
-    width: 50%;
+    width: 60%;
     height: auto;
     background: hsla(0, 0%, 100%, 0.9);
     margin-left: auto;
@@ -376,13 +376,14 @@ code {
 }
 
 /* horizontally challenged */
-@media (max-width: 800px){
+@media (max-width: 960px){
     .page-content div.wrap-center { width: 80%; }
     .page-content div.wrap-post { width: 90%; margin-left: auto; padding: 0px; }
 }
 
 /* quite horizontally challenged */
 @media (max-width: 600px) {
+    .svg-container { display: none !important; }
     .site-tray a.tray-btn { display: block; z-index: 0; }
     .site-title { width: 80%; }
 
@@ -394,6 +395,7 @@ code {
     .site-footer .licence span.text { display: none; }
     .site-footer .licence span.image { display: none; }
     .site-footer .licence span.image-large { display: block; }
+
 }
 
 /* well fed */
