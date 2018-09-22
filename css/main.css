@@ -356,6 +356,30 @@ code {
 .highlight .il { color: #009999; }
 .highlight .gc { color: #999; background-color: #EAF2F5; }
 
+/* d3 graph / network */
+.node {
+    stroke: #000;
+    stroke-width: 1.5px;
+}
+
+.link {
+    fill: none;
+    stroke: #000;
+}
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
 /* tags */
 
 /* SMALL SCREENS */
