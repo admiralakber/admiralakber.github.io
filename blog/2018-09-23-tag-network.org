@@ -45,7 +45,7 @@ align very closely with the relatively modern (2005) theory of learning called
   it is:
 
   @@html:
-  <div name="tagnet" class="svg-container" style="padding-bottom: 200px; display: inline-block!important;">
+  <div name="tagnet" class="svg-container" style="display: inline-block!important;">
   <svg width="300" height="200" class="svg-content-responsive"></svg>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="/js/tag-network.js"></script>
@@ -83,7 +83,6 @@ nodes to see the posts associated with the topic.
    of styling:
 
    #+BEGIN_SRC css
-     /* d3 graph / network */
      .node {
          stroke: #000;
          stroke-width: 1px;
@@ -97,14 +96,13 @@ nodes to see the posts associated with the topic.
          display: inline-block;
          position: relative;
          width: 100%;
-         padding-bottom: 100%;
          vertical-align: top;
          overflow: hidden;
      }
      svg.svg-content-responsive {
-         display: inline-block;
+         display: block;
          margin: auto;
-         position: absolute;
+         position: relative;
          left: 0;
      }
    #+END_SRC
@@ -112,7 +110,7 @@ nodes to see the posts associated with the topic.
    And a little HTML:
 
    #+BEGIN_SRC html
-     <div name="tagnet" class="svg-container" style="padding-bottom: 50%; /* Aspect ratio */">
+     <div name="tagnet" class="svg-container">
        <svg width="600" height="300" class="svg-content-responsive"></svg>
        <script src="https://d3js.org/d3.v4.min.js"></script>
        <script src="/js/tag-network.js"></script>

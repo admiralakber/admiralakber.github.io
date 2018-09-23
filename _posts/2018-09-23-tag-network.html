@@ -61,7 +61,7 @@ it is:
 
 <p>
 
-  <div name="tagnet" class="svg-container" style="padding-bottom: 200px; display: inline-block!important;">
+  <div name="tagnet" class="svg-container" style="display: inline-block!important;">
   <svg width="300" height="200" class="svg-content-responsive"></svg>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="/js/tag-network.js"></script>
@@ -122,8 +122,7 @@ of styling:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-css"><span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">d3 graph / network </span><span style="color: #2aa1ae; background-color: #292e34;">*/</span>
-<span style="color: #bc6ec5; font-weight: bold;">.node </span><span style="color: #4f97d7;">{</span>
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">.node </span><span style="color: #4f97d7;">{</span>
     <span style="color: #4f97d7; font-weight: bold;">stroke</span>: <span style="color: #ffffff; background-color: #000;">#000</span>;
     <span style="color: #4f97d7; font-weight: bold;">stroke-width</span>: <span style="color: #a45bad;">1px</span>;
 <span style="color: #4f97d7;">}</span>
@@ -136,14 +135,13 @@ of styling:
     <span style="color: #4f97d7; font-weight: bold;">display</span>: inline-block;
     <span style="color: #4f97d7; font-weight: bold;">position</span>: relative;
     <span style="color: #4f97d7; font-weight: bold;">width</span>: <span style="color: #a45bad;">100</span>%;
-    <span style="color: #4f97d7; font-weight: bold;">padding-bottom</span>: <span style="color: #a45bad;">100</span>%;
     <span style="color: #4f97d7; font-weight: bold;">vertical-align</span>: top;
     <span style="color: #4f97d7; font-weight: bold;">overflow</span>: hidden;
 <span style="color: #4f97d7;">}</span>
 <span style="color: #bc6ec5; font-weight: bold;">svg.svg-content-responsive </span><span style="color: #4f97d7;">{</span>
-    <span style="color: #4f97d7; font-weight: bold;">display</span>: inline-block;
+    <span style="color: #4f97d7; font-weight: bold;">display</span>: block;
     <span style="color: #4f97d7; font-weight: bold;">margin</span>: auto;
-    <span style="color: #4f97d7; font-weight: bold;">position</span>: absolute;
+    <span style="color: #4f97d7; font-weight: bold;">position</span>: relative;
     <span style="color: #4f97d7; font-weight: bold;">left</span>: <span style="color: #a45bad;">0</span>;
 <span style="color: #4f97d7;">}</span>
 </pre>
@@ -154,7 +152,7 @@ And a little HTML:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span style="color: #bc6ec5; font-weight: bold;">div</span> <span style="color: #7590db;">name</span>=<span style="color: #2d9574;">"tagnet"</span> <span style="color: #7590db;">class</span>=<span style="color: #2d9574;">"svg-container"</span> <span style="color: #7590db;">style</span>=<span style="color: #2d9574;">"padding-bottom: 50%; /* Aspect ratio */"</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #bc6ec5; font-weight: bold;">div</span> <span style="color: #7590db;">name</span>=<span style="color: #2d9574;">"tagnet"</span> <span style="color: #7590db;">class</span>=<span style="color: #2d9574;">"svg-container"</span>&gt;
   &lt;<span style="color: #bc6ec5; font-weight: bold;">svg</span> <span style="color: #7590db;">width</span>=<span style="color: #2d9574;">"600"</span> <span style="color: #7590db;">height</span>=<span style="color: #2d9574;">"300"</span> <span style="color: #7590db;">class</span>=<span style="color: #2d9574;">"svg-content-responsive"</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">svg</span>&gt;
   &lt;<span style="color: #bc6ec5; font-weight: bold;">script</span> <span style="color: #7590db;">src</span>=<span style="color: #2d9574;">"https://d3js.org/d3.v4.min.js"</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">script</span>&gt;
   &lt;<span style="color: #bc6ec5; font-weight: bold;">script</span> <span style="color: #7590db;">src</span>=<span style="color: #2d9574;">"/js/tag-network.js"</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">script</span>&gt;
