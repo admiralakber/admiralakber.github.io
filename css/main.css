@@ -359,7 +359,7 @@ code {
 /* d3 graph / network */
 .node {
     stroke: #000;
-    stroke-width: 1.5px;
+    stroke-width: 1px;
 }
 
 .link {
