@@ -17,16 +17,18 @@ layout: none
             }{%- unless forloop.last -%},{%- endunless -%}
             {% endfor %}],
 
-
-  "links": [
-    {%- for sourcetag in sortedtags -%}
-    {%- assign lastsource = forloop.last -%}
-    {%- for post in site.tags[sourcetag] -%}
-    {%- for targettag in post.tags -%}
-    {%- if sourcetag == targettag -%} {%- continue -%} {%- endif -%}
-    {"source" : "{{ sourcetag }}", "target" : "{{ targettag }}", "value": 1}{%- unless lastsource -%},{%- endunless -%}
-    {%- endfor -%}
-    {%- endfor -%}
-    {%- endfor -%}
-  ]
+  "links": [{% for sourcetag in sortedtags %}
+            {%- assign lastsource = forloop.last -%}
+            {%- for post in site.tags[sourcetag] -%}
+            {%- assign lastpost = forloop.last -%}
+            {%- for targettag in post.tags -%}
+            {%- if sourcetag == targettag -%} {%- continue -%} {%- endif -%}
+            {
+              "source" : "{{ sourcetag }}",
+              "target" : "{{ targettag }}",
+              "value": 1
+            }{%- unless lastsource and lastpost -%},{%- endunless -%}
+            {%- endfor -%}
+            {%- endfor -%}
+            {% endfor %}]
 }

@@ -1,0 +1,141 @@
+#+TITLE: Visualise the knowledge contained on your blog with a tag network
+#+DATE: 2018-09-23
+#+SETUPFILE: ~/Blog/src/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES:
+#+JEKYLL_TAGS: musings physics blog javascript
+#+JEKYLL_PUBLISHED: true
+
+Since I started my Ph.D about 2 years ago, I have been thinking a lot about
+where knowledge is contained. This is because one of my objectives during my
+Ph.D is to advance human knowledge. My research sub-field in nuclear physics is
+nuclear structure. The holy grail of nuclear structure research (as far as I see
+it) is to represent the [[http://people.physics.anu.edu.au/~ecs103/chart/][nuclear chart]] in such a way such that nuclei with
+similar quantum structure are grouped. The electronic quantum structure has been
+classified in this way already, we have the [[https://en.wikipedia.org/wiki/Periodic_table][periodic table]] of elements. However,
+nuclear structure is objectively more complicated and it's unlikely that a
+simple 2-dimensional table will be an accurate representation. Thus, a large
+amount of study of nuclear structure involves identifying systematic trends
+between nuclei. I can add knowledge to the field of nuclear structure by
+connecting nuclei by a trend / behaviour. Turns out my thoughts on this topic
+align very closely with the relatively modern (2005) theory of learning called
+[[https://en.wikipedia.org/wiki/Connectivism][connectivism]].
+
+* Connecting nuclear physics and blogging
+
+  The posts on this blog are like nuclei. The ideas they contain might be
+  related to others by a topic. Much like how all the nuclei mid shell are well
+  described by the rotor model. I could tag all those nuclei with @@html:<span
+  style="font-variant: small-caps; color: maroon;">rotor</span>@@ just like I
+  @@html:<a href="/tags">tag blog posts</a>@@ with a topic. Topics may be
+  connected by posts. The simplest nuclear physics analogy I can think of:
+  @@html:<span style="font-variant: small-caps; color: maroon;">K
+  isomer</span>@@s are connected to @@html:<span style="font-variant:
+  small-caps; color: maroon;">rotor</span>@@s by nuclei in the Hafnium region.
+  Now this post connects {{{taglink(blog)}}}ging to {{{taglink(physics)}}} and I
+  tricked you into learning some nuclear physics.
+
+* The knowledge contained in this blog
+
+  I wanted a way for me to keep track of the big picture that this blog is
+  presenting to the internet for self preservation and improvement. There's no
+  way a tag cloud was going to be good enough for me. I want to know how topics
+  are connected as that is some representation of the knowledge I have on the
+  blog. I want a network of tags as nodes and posts as links, so I made it. Here
+  it is:
+
+  @@html:
+  <div name="tagnet" class="svg-container" style="padding-bottom: 200px; display: inline-block!important;">
+  <svg width="300" height="200" class="svg-content-responsive"></svg>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="/js/tag-network.js"></script>
+  </div>
+  @@
+
+I have bounded the above to a tiny box so that it's viewable on all devices but
+may look a bit crowded. A more luxurious version can be found on @@html:<a
+href="/tags">my tags page</a>@@ provided your screen is >600px wide. The graph
+was made with JavaScript library [[https://github.com/d3/d3][D3.js]] and I generated the input data from my
+blog using [[https://jekyllrb.com/docs/liquid/][Jekyll Liquid]].
+
+Nodes are sized based on how many posts have that tag. Nodes with more
+connections are forced closer together and vice versa. You can mouse over the
+nodes to see the posts associated with the topic.
+
+** Generating the data with Jekyll Liquid
+
+   This blog is hosted [[https://github.com/admiralakber/admiralakber.github.io][GitHub]] and compiled automatically when I push to the
+   repository using Jekyll. I wrote a bit of liquid that iterates over tags and
+   posts and generates the input data.
+
+   Liquid code: [[https://github.com/admiralakber/admiralakber.github.io/blob/master/js/tag-data.json][GitHub]] → Jekyll output: @@html:<a href="/js/tag-data.json">This blog</a>@@
+
+** Generating the graph
+
+   This is the combination of three D3.js examples by: [[https://bl.ocks.org/mbostock/4600693][Mike Bostock]], [[http://bl.ocks.org/d3noob/5141278][d3noob]], and
+   [[https://bl.ocks.org/puzzler10/2531c035e8d514f125c4d15433f79d74][Tom Roth]].
+
+   JavaScript code: [[https://github.com/admiralakber/admiralakber.github.io/blob/master/js/tag-network.js][GitHub]]
+
+** Embedding it in your blog
+
+   Save the code above in a folder =/js= on your webhost and with a little bit
+   of styling:
+
+   #+BEGIN_SRC css
+     /* d3 graph / network */
+     .node {
+         stroke: #000;
+         stroke-width: 1px;
+     }
+
+     .link {
+         fill: none;
+         stroke: #000;
+     }
+     .svg-container {
+         display: inline-block;
+         position: relative;
+         width: 100%;
+         padding-bottom: 100%;
+         vertical-align: top;
+         overflow: hidden;
+     }
+     svg.svg-content-responsive {
+         display: inline-block;
+         margin: auto;
+         position: absolute;
+         left: 0;
+     }
+   #+END_SRC
+
+   And a little HTML:
+
+   #+BEGIN_SRC html
+     <div name="tagnet" class="svg-container" style="padding-bottom: 50%; /* Aspect ratio */">
+       <svg width="600" height="300" class="svg-content-responsive"></svg>
+       <script src="https://d3js.org/d3.v4.min.js"></script>
+       <script src="/js/tag-network.js"></script>
+     </div>
+   #+END_SRC
+
+   You can embed the tag network anywhere on your Jekyll blog.
+
+* Conclusions
+
+  I have been thinking about [[https://en.wikipedia.org/wiki/Connectivism][connectivism]] as a means of representing knowledge,
+  and encoding information. I have implemented a tag network for this blog to
+  test this idea. The @@html:<a href="/tags">tag network</a>@@ represents the
+  topic connectivity of this blog. At a glance you can see what topics are
+  covered by this blog, how much information about that topic exists, and how to
+  extend your learning to other topics using this blog.
+
+  As the author of this blog I can use the emergence of clusters in the tag
+  network as an indicator of concepts that I am covering strongly. I can also
+  use it as a tool to make me cognisant of the knowledge I contain and publish
+  publicly. Unlike in nuclear physics where the universe defines the connections
+  between nuclei, I have control over myself and can use the tag network for
+  self improvement.
+
+  I am impressed by how information rich the tag network is and have intentions
+  of applying it in my research of nuclear physics.

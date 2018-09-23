@@ -370,13 +370,14 @@ code {
     display: inline-block;
     position: relative;
     width: 100%;
+    padding-bottom: 100%;
     vertical-align: top;
     overflow: hidden;
 }
-.svg-content-responsive {
+svg.svg-content-responsive {
     display: inline-block;
+    margin: auto;
     position: absolute;
-    top: 10px;
     left: 0;
 }
 
@@ -407,7 +408,7 @@ code {
 
 /* quite horizontally challenged */
 @media (max-width: 600px) {
-    .svg-container { display: none !important; }
+    .svg-container { display: none; }
     .site-tray a.tray-btn { display: block; z-index: 0; }
     .site-title { width: 80%; }
 
