@@ -164,6 +164,24 @@ div.wrap-post {
 }
 
 /* posts */
+.page-navigation {
+    font-size: 14px;
+    display: block;
+    width: auto;
+    overflow: hidden;
+}
+
+.page-navigation a {
+    display: block;
+    width: 50%;
+    float: left;
+    margin: 1em 0;
+}
+
+.page-navigation .next {
+    text-align: right;
+}
+
 header.post-header {
     text-align: center;
 }
