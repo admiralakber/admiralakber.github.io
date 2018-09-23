@@ -79,8 +79,8 @@ blog using <a href="https://jekyllrb.com/docs/liquid/">Jekyll Liquid</a>.
 
 <p>
 Nodes are sized based on how many posts have that tag. Nodes with more
-connections are forced closer together and vice versa. You can mouse over the
-nodes to see the posts associated with the topic.
+connections are forced closer together. You can mouse over the nodes to see the
+posts associated with the topic.
 </p>
 </div>
 
@@ -122,28 +122,28 @@ of styling:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">.node </span><span style="color: #4f97d7;">{</span>
-    <span style="color: #4f97d7; font-weight: bold;">stroke</span>: <span style="color: #ffffff; background-color: #000;">#000</span>;
-    <span style="color: #4f97d7; font-weight: bold;">stroke-width</span>: <span style="color: #a45bad;">1px</span>;
-<span style="color: #4f97d7;">}</span>
+<pre class="src src-css"><span style="color: #01a0e4;">.node </span><span style="color: #a16a94;">{</span>
+    <span style="color: #a16a94;">stroke</span>: <span style="color: #ffffff; background-color: #000;">#000</span>;
+    <span style="color: #a16a94;">stroke-width</span>: <span style="color: #e8bbd0;">1px</span>;
+<span style="color: #a16a94;">}</span>
 
-<span style="color: #bc6ec5; font-weight: bold;">.link </span><span style="color: #4f97d7;">{</span>
-    <span style="color: #4f97d7; font-weight: bold;">fill</span>: none;
-    <span style="color: #4f97d7; font-weight: bold;">stroke</span>: <span style="color: #ffffff; background-color: #000;">#000</span>;
-<span style="color: #4f97d7;">}</span>
-<span style="color: #bc6ec5; font-weight: bold;">.svg-container </span><span style="color: #4f97d7;">{</span>
-    <span style="color: #4f97d7; font-weight: bold;">display</span>: inline-block;
-    <span style="color: #4f97d7; font-weight: bold;">position</span>: relative;
-    <span style="color: #4f97d7; font-weight: bold;">width</span>: <span style="color: #a45bad;">100</span>%;
-    <span style="color: #4f97d7; font-weight: bold;">vertical-align</span>: top;
-    <span style="color: #4f97d7; font-weight: bold;">overflow</span>: hidden;
-<span style="color: #4f97d7;">}</span>
-<span style="color: #bc6ec5; font-weight: bold;">svg.svg-content-responsive </span><span style="color: #4f97d7;">{</span>
-    <span style="color: #4f97d7; font-weight: bold;">display</span>: block;
-    <span style="color: #4f97d7; font-weight: bold;">margin</span>: auto;
-    <span style="color: #4f97d7; font-weight: bold;">position</span>: relative;
-    <span style="color: #4f97d7; font-weight: bold;">left</span>: <span style="color: #a45bad;">0</span>;
-<span style="color: #4f97d7;">}</span>
+<span style="color: #01a0e4;">.link </span><span style="color: #a16a94;">{</span>
+    <span style="color: #a16a94;">fill</span>: none;
+    <span style="color: #a16a94;">stroke</span>: <span style="color: #ffffff; background-color: #000;">#000</span>;
+<span style="color: #a16a94;">}</span>
+<span style="color: #01a0e4;">.svg-container </span><span style="color: #a16a94;">{</span>
+    <span style="color: #a16a94;">display</span>: inline-block;
+    <span style="color: #a16a94;">position</span>: relative;
+    <span style="color: #a16a94;">width</span>: <span style="color: #e8bbd0;">100</span>%;
+    <span style="color: #a16a94;">vertical-align</span>: top;
+    <span style="color: #a16a94;">overflow</span>: hidden;
+<span style="color: #a16a94;">}</span>
+<span style="color: #01a0e4;">svg.svg-content-responsive </span><span style="color: #a16a94;">{</span>
+    <span style="color: #a16a94;">display</span>: block;
+    <span style="color: #a16a94;">margin</span>: auto;
+    <span style="color: #a16a94;">position</span>: relative;
+    <span style="color: #a16a94;">left</span>: <span style="color: #e8bbd0;">0</span>;
+<span style="color: #a16a94;">}</span>
 </pre>
 </div>
 
@@ -152,11 +152,11 @@ And a little HTML:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span style="color: #bc6ec5; font-weight: bold;">div</span> <span style="color: #7590db;">name</span>=<span style="color: #2d9574;">"tagnet"</span> <span style="color: #7590db;">class</span>=<span style="color: #2d9574;">"svg-container"</span>&gt;
-  &lt;<span style="color: #bc6ec5; font-weight: bold;">svg</span> <span style="color: #7590db;">width</span>=<span style="color: #2d9574;">"600"</span> <span style="color: #7590db;">height</span>=<span style="color: #2d9574;">"300"</span> <span style="color: #7590db;">class</span>=<span style="color: #2d9574;">"svg-content-responsive"</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">svg</span>&gt;
-  &lt;<span style="color: #bc6ec5; font-weight: bold;">script</span> <span style="color: #7590db;">src</span>=<span style="color: #2d9574;">"https://d3js.org/d3.v4.min.js"</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">script</span>&gt;
-  &lt;<span style="color: #bc6ec5; font-weight: bold;">script</span> <span style="color: #7590db;">src</span>=<span style="color: #2d9574;">"/js/tag-network.js"</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">script</span>&gt;
-&lt;/<span style="color: #bc6ec5; font-weight: bold;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #01a0e4;">div</span> <span style="color: #db2d20;">name</span>=<span style="color: #01a252;">"tagnet"</span> <span style="color: #db2d20;">class</span>=<span style="color: #01a252;">"svg-container"</span>&gt;
+  &lt;<span style="color: #01a0e4;">svg</span> <span style="color: #db2d20;">width</span>=<span style="color: #01a252;">"600"</span> <span style="color: #db2d20;">height</span>=<span style="color: #01a252;">"300"</span> <span style="color: #db2d20;">class</span>=<span style="color: #01a252;">"svg-content-responsive"</span>&gt;&lt;/<span style="color: #01a0e4;">svg</span>&gt;
+  &lt;<span style="color: #01a0e4;">script</span> <span style="color: #db2d20;">src</span>=<span style="color: #01a252;">"https://d3js.org/d3.v4.min.js"</span>&gt;&lt;/<span style="color: #01a0e4;">script</span>&gt;
+  &lt;<span style="color: #01a0e4;">script</span> <span style="color: #db2d20;">src</span>=<span style="color: #01a252;">"/js/tag-network.js"</span>&gt;&lt;/<span style="color: #01a0e4;">script</span>&gt;
+&lt;/<span style="color: #01a0e4;">div</span>&gt;
 </pre>
 </div>
 

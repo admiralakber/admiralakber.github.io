@@ -59,8 +59,8 @@ was made with JavaScript library [[https://github.com/d3/d3][D3.js]] and I gener
 blog using [[https://jekyllrb.com/docs/liquid/][Jekyll Liquid]].
 
 Nodes are sized based on how many posts have that tag. Nodes with more
-connections are forced closer together and vice versa. You can mouse over the
-nodes to see the posts associated with the topic.
+connections are forced closer together. You can mouse over the nodes to see the
+posts associated with the topic.
 
 ** Generating the data with Jekyll Liquid
 
