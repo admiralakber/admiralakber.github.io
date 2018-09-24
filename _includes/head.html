@@ -1,30 +1,31 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{{ page.title }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <!-- https only -->
-  <script type="text/javascript">
-    var host = "{{ enforce_ssl }}";
-    if ((host == window.location.host) && (window.location.protocol != "https:"))
-    window.location.protocol = "https";
-  </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ page.title }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- https only -->
+    <script type="text/javascript">
+     var host = "{{ enforce_ssl }}";
+     if ((host == window.location.host) && (window.location.protocol != "https:"))
+         window.location.protocol = "https";
+    </script>
 
-  <!-- mobile first -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile first -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT AWESOME -->
-  <script src="https://use.fontawesome.com/79f31ad9b1.js"></script>
+    <!-- FONT AWESOME --->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-  <!-- RSS Feed -->
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} posts" />
+    <!-- RSS Feed -->
+    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} posts" />
 
-  <!-- My theme -->
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+    <!-- My theme -->
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"/>
+    <link disabled="disabled" id="dark-reader" rel="stylesheet" href="{{ "/css/dark.css" | prepend: site.baseurl }}">
 
-  <!-- Javascript goodies -->
-  <script src="{{ "/js/aa-goodies.js" | prepend: site.baseurl }}"></script>
+    <!-- Javascript goodies -->
+    <script src="{{ "/js/aa-goodies.js" | prepend: site.baseurl }}"></script>
 
 </head>

@@ -1,35 +1,55 @@
 <header class="site-header">
-  <a class="site-title" href="{{ site.baseurl }}/" title="A. Akber: Home">
-    A. Akber <i class="fa fa-home" aria-hidden="true"></i>
-  </a>
-
-  <div class="site-tray">
-    <a href="javascript:void(0)" onclick="vis_toggle('tray');return false;" class="tray-btn">
-      <i class="fa fa-tasks"></i>
+    <a class="site-title" href="{{ site.baseurl }}/" title="A. Akber: Home">
+        A. Akber <i class="fa fa-home" aria-hidden="true"></i>
     </a>
 
-    <div class="trigger" id="tray">
-      <a class="tray-icon" href="{{ "/feed.xml" | prepend: site.baseurl }}" title="A. Akber: Atom/RSS XML feed">
-  <i class="fa fa-rss"></i>
-      </a>
+    <div class="site-tray">
+        <a href="javascript:void(0)" onclick="vis_toggle('tray');return false;" class="tray-btn">
+            <i class="fa fa-bars"></i>
+        </a>
 
-      <a class="tray-icon" href="{{ site.baseurl}}/tags" title="A. Akber: Posts by tag">
-  <i class="fa fa-tags"></i>
-      </a>
+        <div class="trigger" id="tray">
+            <a class="tray-icon" href="{{ "/feed.xml" | prepend: site.baseurl }}" title="A. Akber: Atom/RSS XML feed">
+                <i class="fa fa-rss"></i>
+            </a>
 
-      {% if site.github_username %}
-      <a class="tray-icon" href="https://github.com/{{ site.github_username }}" title="Github: {{ site.github_username }}">
-  <i class="fa fa-github"></i>
-      </a>
-      {% endif %}
+            <a class="tray-icon" href="{{ site.baseurl}}/tags" title="A. Akber: Posts by tag">
+                <i class="fa fa-tags"></i>
+            </a>
 
-      {% if site.twitter_username %}
-      <a class="tray-icon" href="https://twitter.com/{{ site.twitter_username }}" title="Twitter: {{ site.twitter_username }}">
-  <i class="fa fa-twitter"></i>
-      </a>
-      {% endif %}
+            {% if site.github_username %}
+            <a class="tray-icon" href="https://github.com/{{ site.github_username }}" title="Github: {{ site.github_username }}">
+                <i class="fab fa-github"></i>
+            </a>
+            {% endif %}
 
-      <a class="tray-clock" id="clock"></a>
+            {% if site.twitter_username %}
+            <a class="tray-icon" href="https://twitter.com/{{ site.twitter_username }}" title="Twitter: {{ site.twitter_username }}">
+                <i class="fab fa-twitter"></i>
+            </a>
+            {% endif %}
+
+            <a class="tray-icon" href="javascript:void(0)"  onclick="dark_toggle();return false;" title="Toggle night mode">
+                <i id="dark-reader-icon" class="fa fa-moon fa-pulse" style="color:rgb(109, 146, 190); animation-iteration-count: 5;"></i>
+            </a>
+
+            <a class="tray-clock" id="clock"></a>
+
+            <script>
+             updateClock();
+             if (localStorage.getItem != null | undefined) {
+                 var icon = document.getElementById("dark-reader-icon");
+                 icon.style.animationIterationCount = 1;
+             }
+
+             if (localStorage.getItem("darkreader") == "enabled") {
+                 var el1 = document.getElementById("dark-reader");
+                 var icon = document.getElementById("dark-reader-icon");
+                 el1.removeAttribute("disabled");
+                 icon.setAttribute("class", "fas fa-sun fa-pulse");
+             }
+            </script>
+
+        </div>
     </div>
-  </div>
 </header>

@@ -153,7 +153,7 @@ div.wrap-center {
 div.wrap-post {
     width: 50%;
     height: auto;
-    background: hsla(0, 0%, 100%, 0.5);
+/*    background: hsla(0, 0%, 100%, 0.5); */
     margin-left: 10%;
     margin-right: auto;
     font-size: 20px;
@@ -398,7 +398,129 @@ svg.svg-content-responsive {
     left: 0;
 }
 
-/* tags */
+/* font awesome */
+/* Animations, thanks Alessandro Gubitosi https://github.com/gubi
+   Source: https://gist.github.com/gubi/8483199
+*/
+.fa-pulse {
+    display: inline-block;
+    -moz-animation: pulse 2s infinite linear;
+    -o-animation: pulse 2s infinite linear;
+    -webkit-animation: pulse 2s infinite linear;
+    animation: pulse 2s infinite linear;
+}
+
+@-webkit-keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-moz-keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-o-keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-ms-keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.fa-bounce {
+    display: inline-block;
+    position: relative;
+    -moz-animation: bounce 1s infinite linear;
+    -o-animation: bounce 1s infinite linear;
+    -webkit-animation: bounce 1s infinite linear;
+    animation: bounce 1s infinite linear;
+}
+
+@-webkit-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-moz-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-o-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-ms-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+/* --- */
+.fa-wiggle {
+    display: inline-block;
+    position: relative;
+    -moz-animation: wiggle 1s infinite linear;
+    -o-animation: wiggle 1s infinite linear;
+    -webkit-animation: wiggle 1s infinite linear;
+    animation: wiggle 1s infinite linear;
+}
+
+@keyframes wiggle {
+    0% {-webkit-transform: rotate(10deg);}
+    25% {-webkit-transform: rotate(-10deg);}
+    50% {-webkit-transform: rotate(20deg);}
+    75% {-webkit-transform: rotate(-5deg);}
+    100% {-webkit-transform: rotate(0deg);}
+}
+
+@keyframes wiggle {
+    0% {-moz-transform: rotate(10deg);}
+    25% {-moz-transform: rotate(-10deg);}
+    50% {-moz-transform: rotate(20deg);}
+    75% {-moz-transform: rotate(-5deg);}
+    100% {-moz-transform: rotate(0deg);}
+}
+@-o-keyframes wiggle {
+    0% {-o-transform: rotate(10deg);}
+    25% {-o-transform: rotate(-10deg);}
+    50% {-o-transform: rotate(20deg);}
+    75% {-o-transform: rotate(-5deg);}
+    100% {-o-transform: rotate(0deg);}
+}
+@-ms-keyframes wiggle {
+    0% {-ms-transform: rotate(10deg);}
+    25% {-ms-transform: rotate(-10deg);}
+    50% {-ms-transform: rotate(20deg);}
+    75% {-ms-transform: rotate(-5deg);}
+    100% {-ms-transform: rotate(0deg);}
+}
+@keyframes wiggle {
+    0% {transform: rotate(10deg);}
+    25% {transform: rotate(-10deg);}
+    50% {transform: rotate(20deg);}
+    75% {transform: rotate(-5deg);}
+    100% {transform: rotate(0deg);}
+}
+
 
 /* SMALL SCREENS */
 /* -------------------- */

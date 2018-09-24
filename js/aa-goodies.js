@@ -33,14 +33,30 @@ function updateClock() {
 
     // Sets the elements inner HTML value to our clock data
     elem.innerHTML = hours + ':' + minutes + ':' + seconds;
-    elem.title = 'Date: ' + year + '-' + month + '-' + day;
+    elem.title = now.toDateString();
 
 }
 
+// Hide element id
 function vis_toggle(id) {
     var e = document.getElementById(id);
     if(e.style.display == 'block')
         e.style.display = 'none';
     else
         e.style.display = 'block';
+}
+
+// Toggle dark mode
+function dark_toggle() {
+    var el1 = document.getElementById("dark-reader");
+    var icon = document.getElementById("dark-reader-icon");
+    if( el1.getAttribute("disabled") == "disabled") {
+        el1.removeAttribute("disabled");
+        icon.setAttribute("class", "fas fa-sun fa-pulse");
+        localStorage.setItem("darkreader", "enabled");
+    } else {
+        el1.setAttribute("disabled", "disabled");
+        icon.setAttribute("class", "fas fa-moon fa-pulse");
+        localStorage.setItem("darkreader", "disabled");
+    }
 }
