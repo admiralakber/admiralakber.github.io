@@ -48,8 +48,7 @@ header from any page.*
   The following JavaScript function toggles the =disabled= flag and stores the
   status so that the users choice is persistent across the website. I am using a
   slightly more complex version of this function that also sets attributes of
-  the toggle icon. You can find my code current to this post [[https://github.com/admiralakber/admiralakber.github.io/blob/master/js/aa-goodies.js][in this
-  file/commit]].
+  the toggle icon. You can find my code current to this post [[https://github.com/admiralakber/admiralakber.github.io/blob/f765f924c61ddff3d8c14f173c3ab59c4fc23f03/js/aa-goodies.js][in this file/commit]].
 
   #+BEGIN_SRC javascript
     function dark_toggle() {
@@ -92,7 +91,7 @@ header from any page.*
   #+END_SRC
 
   Again, my code has a bit more to it just to animate icons on click too. You
-  can find my version current of this post in [[https://github.com/admiralakber/admiralakber.github.io/blob/master/_includes/header.html][this file/commit]].
+  can find my version current of this post in [[https://github.com/admiralakber/admiralakber.github.io/blob/f765f924c61ddff3d8c14f173c3ab59c4fc23f03/_includes/header.html][this file/commit]].
 
 * Conclusions
 
