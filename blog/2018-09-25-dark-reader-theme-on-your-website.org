@@ -82,7 +82,6 @@ header from any page.*
     <script>
      if (localStorage.getItem("darkreader") == "enabled") {
          document.getElementById("dark-reader").disabled = false;
-         var icon = document.getElementById("dark-reader-icon");
      } else {
          document.getElementById("dark-reader").disabled = true;
      }
