@@ -1,0 +1,110 @@
+#+TITLE: Generate a dark theme and add a toggle switch to your website in 10 minutes with pure CSS / JavaScript
+#+DATE: 2018-09-25
+#+SETUPFILE: ~/Blog/src/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES:
+#+JEKYLL_TAGS: javascript css blog
+#+JEKYLL_PUBLISHED: true
+
+Click the following icon @@html:<a class="tray-icon" href="javascript:void(0)"
+onclick="dark_toggle();return false;" title="Toggle night mode"><i
+id="dark-reader-icon" class="fa fa-moon fa-pulse" style="color:rgb(109, 146,
+190); animation-iteration-count: 5;"></i></a>@@ and this website will change
+dramatically right before your eyes. Because I'm
+{{{postlink(2018-09-22-myos-machines, lazy)}}} I used the excellent browser
+plugin [[https://darkreader.org/][Dark Reader]] on the light theme of my website to generate the dark theme.
+Using its static theme engine, I copied the CSS dark reader generates and
+ordinarily injects into the page. I'm now hosting that on my server and with a
+bit of JavaScript attached to the moon icon, readers can now enjoy a beautiful
+dark theme without having to install a plugin.
+
+*Toggle between night / day mode from any page using the moon / sun icon in the
+header from any page.*
+
+* Generate the dark theme
+
+  Install [[https://darkreader.org/][Dark Reader]] Browse to your website. Toggle Dark Reader on, your
+  website should now be dark themed. Under the extensions [[https://darkreader.org/help/en/#more-tab][more tab]] change the
+  filter to static. Press F12 to inspect your page's HTML and unfold the
+  =<head>= tag. Toggle the plugin on/off look for the extension injecting a
+  =<style>= tag. Expand this, copy the content and save it as [[https://github.com/admiralakber/admiralakber.github.io/blob/master/css/dark.css][dark.css]] to be
+  hosted on your web server, follow the prior link to see mine. Tweak manually
+  if necessary.
+
+* Add a toggle switch
+
+  Include the dark style sheet along side your main theme but add the =disabled=
+  flag and an =id= so we have a way of finding the element.
+
+#+BEGIN_SRC html
+  <head>
+    ...
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link disabled id="dark-reader" rel="stylesheet" href="/css/dark.css">
+    ...
+  </head>
+#+END_SRC
+
+  The following JavaScript function toggles the =disabled= flag and stores the
+  status so that the users choice is persistent across the website. I am using a
+  slightly more complex version of this function that also sets attributes of
+  the toggle icon. You can find my code current to this post [[https://github.com/admiralakber/admiralakber.github.io/blob/master/js/aa-goodies.js][in this
+  file/commit]].
+
+  #+BEGIN_SRC javascript
+    function dark_toggle() {
+        var el1 = document.getElementById("dark-reader");
+        if(el1.disabled) {
+            el1.disabled = false;
+            localStorage.setItem("darkreader", "enabled");
+        } else {
+            el1.disabled = true;
+            localStorage.setItem("darkreader", "disabled");
+        }
+    }
+  #+END_SRC
+
+  Then in HTML we can create a link that on click calls the above JavaScript
+  function.
+
+  #+BEGIN_SRC html
+    <a href="javascript:void(0)" onclick="dark_toggle();return false;" title="Toggle night mode">
+      Some text, button or image that on click toggles the dark theme for this
+      website. I use font awesome icons.
+    </a>
+  #+END_SRC
+
+  However, as it stands even though we're storing the users theme choice we're
+  not applying it on load of a page. To do this, we need to execute a bit of
+  code as soon as the page loads. Add the following to somewhere near the top of
+  your HTML but after including the dark theme.
+
+  #+BEGIN_SRC web
+    <script>
+     if (localStorage.getItem("darkreader") == "enabled") {
+         document.getElementById("dark-reader").disabled = false;
+         var icon = document.getElementById("dark-reader-icon");
+         icon.setAttribute("class", "fas fa-sun fa-pulse");
+     } else {
+         document.getElementById("dark-reader").disabled = true;
+     }
+    </script>
+  #+END_SRC
+
+  Again, my code has a bit more to it just to animate icons on click too. You
+  can find my version current of this post in [[https://github.com/admiralakber/admiralakber.github.io/blob/master/_includes/header.html][this file/commit]].
+
+* Conclusions
+
+  With nothing but simple CSS and JavaScript you can provide quite a pleasant
+  experience for readers of your blog / website. There's no need for bloat or
+  black box plugins into your websites CMS. By actually inspecting and what Dark
+  Reader was doing to the website behind the scenes, I was able to come up with
+  this simple yet effective hack.
+
+  Please let me know how it goes for your website.
+
+* Acknowledgements
+
+  Kudos to all the contributors to Dark Reader for making a great piece of
+  software: [[https://github.com/darkreader/darkreader]]

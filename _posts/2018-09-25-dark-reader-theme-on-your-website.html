@@ -1,0 +1,152 @@
+---
+title: "Generate a dark theme and add a toggle switch to your website in 10 minutes with pure CSS / JavaScript"
+date: 2018-09-25
+layout: post
+categories:
+tags:
+- javascript
+- css
+- blog
+published: true
+comments:
+---
+<p>
+Click the following icon <a class="tray-icon" href="javascript:void(0)"
+onclick="dark_toggle();return false;" title="Toggle night mode"><i
+id="dark-reader-icon" class="fa fa-moon fa-pulse" style="color:rgb(109, 146,
+190); animation-iteration-count: 5;"></i></a> and this website will change
+dramatically right before your eyes. Because I'm
+<a href="{% post_url 2018-09-22-myos-machines %}"> lazy</a> I used the excellent browser
+plugin <a href="https://darkreader.org/">Dark Reader</a> on the light theme of my website to generate the dark theme.
+Using its static theme engine, I copied the CSS dark reader generates and
+ordinarily injects into the page. I'm now hosting that on my server and with a
+bit of JavaScript attached to the moon icon, readers can now enjoy a beautiful
+dark theme without having to install a plugin.
+</p>
+
+<p>
+<b>Toggle between night / day mode from any page using the moon / sun icon in the
+header from any page.</b>
+</p>
+
+<div id="outline-container-orga7f4328" class="outline-2">
+<h2 id="orga7f4328">Generate the dark theme</h2>
+<div class="outline-text-2" id="text-orga7f4328">
+<p>
+Install <a href="https://darkreader.org/">Dark Reader</a> Browse to your website. Toggle Dark Reader on, your
+website should now be dark themed. Under the extensions <a href="https://darkreader.org/help/en/#more-tab">more tab</a> change the
+filter to static. Press F12 to inspect your page's HTML and unfold the
+<code>&lt;head&gt;</code> tag. Toggle the plugin on/off look for the extension injecting a
+<code>&lt;style&gt;</code> tag. Expand this, copy the content and save it as <a href="https://github.com/admiralakber/admiralakber.github.io/blob/master/css/dark.css">dark.css</a> to be
+hosted on your web server, follow the prior link to see mine. Tweak manually
+if necessary.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6d906b0" class="outline-2">
+<h2 id="org6d906b0">Add a toggle switch</h2>
+<div class="outline-text-2" id="text-org6d906b0">
+<p>
+Include the dark style sheet along side your main theme but add the <code>disabled</code>
+flag and an <code>id</code> so we have a way of finding the element.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #bc6ec5; font-weight: bold;">head</span>&gt;
+  ...
+  &lt;<span style="color: #bc6ec5; font-weight: bold;">link</span> <span style="color: #7590db;">rel</span>=<span style="color: #2d9574;">"stylesheet"</span> <span style="color: #7590db;">href</span>=<span style="color: #2d9574;">"/css/main.css"</span>/&gt;
+  &lt;<span style="color: #bc6ec5; font-weight: bold;">link</span> disabled <span style="color: #7590db;">id</span>=<span style="color: #2d9574;">"dark-reader"</span> <span style="color: #7590db;">rel</span>=<span style="color: #2d9574;">"stylesheet"</span> <span style="color: #7590db;">href</span>=<span style="color: #2d9574;">"/css/dark.css"</span>&gt;
+  ...
+&lt;/<span style="color: #bc6ec5; font-weight: bold;">head</span>&gt;
+</pre>
+</div>
+
+<p>
+The following JavaScript function toggles the <code>disabled</code> flag and stores the
+status so that the users choice is persistent across the website. I am using a
+slightly more complex version of this function that also sets attributes of
+the toggle icon. You can find my code current to this post <a href="https://github.com/admiralakber/admiralakber.github.io/blob/master/js/aa-goodies.js">in this
+file/commit</a>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-javascript"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">dark_toggle</span><span style="color: #4f97d7;">()</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">el1</span> = document.getElementById<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"dark-reader"</span><span style="color: #bc6ec5;">)</span>;
+    <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #bc6ec5;">(</span>el1.disabled<span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+        el1.disabled = <span style="color: #a45bad;">false</span>;
+        localStorage.setItem<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"darkreader"</span>, <span style="color: #2d9574;">"enabled"</span><span style="color: #2d9574;">)</span>;
+    <span style="color: #bc6ec5;">}</span> <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #bc6ec5;">{</span>
+        el1.disabled = <span style="color: #a45bad;">true</span>;
+        localStorage.setItem<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"darkreader"</span>, <span style="color: #2d9574;">"disabled"</span><span style="color: #2d9574;">)</span>;
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+Then in HTML we can create a link that on click calls the above JavaScript
+function.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #bc6ec5; font-weight: bold;">a</span> <span style="color: #7590db;">href</span>=<span style="color: #2d9574;">"javascript:void(0)"</span> <span style="color: #7590db;">onclick</span>=<span style="color: #2d9574;">"dark_toggle();return false;"</span> <span style="color: #7590db;">title</span>=<span style="color: #2d9574;">"Toggle night mode"</span>&gt;
+  Some text, button or image that on click toggles the dark theme for this
+  website. I use font awesome icons.
+&lt;/<span style="color: #bc6ec5; font-weight: bold;">a</span>&gt;
+</pre>
+</div>
+
+<p>
+However, as it stands even though we're storing the users theme choice we're
+not applying it on load of a page. To do this, we need to execute a bit of
+code as soon as the page loads. Add the following to somewhere near the top of
+your HTML but after including the dark theme.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-web">&lt;script&gt;
+ <span style="color: #4f97d7;">if</span> <span style="color: #4f97d7;">(</span>localStorage.<span style="color: #bc6ec5; font-weight: bold;">getItem</span><span style="color: #bc6ec5;">(</span>"darkreader"<span style="color: #bc6ec5;">)</span> == "enabled"<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+     document.<span style="color: #bc6ec5; font-weight: bold;">getElementById</span><span style="color: #bc6ec5;">(</span>"dark-reader"<span style="color: #bc6ec5;">)</span>.disabled = <span style="color: #a45bad;">false</span>;
+     <span style="color: #4f97d7;">var</span> <span style="color: #7590db;">icon</span> = document.<span style="color: #bc6ec5; font-weight: bold;">getElementById</span><span style="color: #bc6ec5;">(</span>"dark-reader-icon"<span style="color: #bc6ec5;">)</span>;
+     icon.<span style="color: #bc6ec5; font-weight: bold;">setAttribute</span><span style="color: #bc6ec5;">(</span>"class", "fas fa-sun fa-pulse"<span style="color: #bc6ec5;">)</span>;
+ <span style="color: #4f97d7;">}</span> <span style="color: #4f97d7;">else</span> <span style="color: #4f97d7;">{</span>
+     document.<span style="color: #bc6ec5; font-weight: bold;">getElementById</span><span style="color: #bc6ec5;">(</span>"dark-reader"<span style="color: #bc6ec5;">)</span>.disabled = <span style="color: #a45bad;">true</span>;
+ <span style="color: #4f97d7;">}</span>
+&lt;/script&gt;
+</pre>
+</div>
+
+<p>
+Again, my code has a bit more to it just to animate icons on click too. You
+can find my version current of this post in <a href="https://github.com/admiralakber/admiralakber.github.io/blob/master/_includes/header.html">this file/commit</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4ff49be" class="outline-2">
+<h2 id="org4ff49be">Conclusions</h2>
+<div class="outline-text-2" id="text-org4ff49be">
+<p>
+With nothing but simple CSS and JavaScript you can provide quite a pleasant
+experience for readers of your blog / website. There's no need for bloat or
+black box plugins into your websites CMS. By actually inspecting and what Dark
+Reader was doing to the website behind the scenes, I was able to come up with
+this simple yet effective hack.
+</p>
+
+<p>
+Please let me know how it goes for your website.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org759869f" class="outline-2">
+<h2 id="org759869f">Acknowledgements</h2>
+<div class="outline-text-2" id="text-org759869f">
+<p>
+Kudos to all the contributors to Dark Reader for making a great piece of
+software: <a href="https://github.com/darkreader/darkreader">https://github.com/darkreader/darkreader</a>
+</p>
+</div>
+</div>

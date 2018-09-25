@@ -43,11 +43,13 @@
              }
 
              if (localStorage.getItem("darkreader") == "enabled") {
-                 var el1 = document.getElementById("dark-reader");
+                 document.getElementById("dark-reader").disabled = false;
                  var icon = document.getElementById("dark-reader-icon");
-                 el1.removeAttribute("disabled");
                  icon.setAttribute("class", "fas fa-sun fa-pulse");
+             } else {
+                 document.getElementById("dark-reader").disabled = true;
              }
+
             </script>
 
         </div>
