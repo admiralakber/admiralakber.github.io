@@ -17,6 +17,7 @@ layout: default
             <h1>{{ page.title }}</h1>
             {% if page.author %}<p>{{ page.author }}</p>{% endif %}
             <p style="font-style: italic;">Post started {{ page.date | date: "%-d %B %Y" }}</p>
+            <a href="https://github.com/admiralakber/admiralakber.github.io/commits/master/{{ page.path }}" style="font-style: italic;">PGP Verified Post History</a>
             {% if page.tags %}<p style="font-variant: small-caps;"><i class="fa fa-tags" style="font-size: 0.7em;" aria-hidden="true"></i> {% for tag in page.tags %}<a href="/tags#{{ tag }}">{{ tag }}</a> {% endfor %}</p>{% endif %}
         </header>
         <br>
