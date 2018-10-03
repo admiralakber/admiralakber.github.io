@@ -44,8 +44,6 @@ a.site-title, .site-title:visited {
 .site-title:hover { color: #FFFFFF; }
 .site-title:link { text-decoration: none; }
 
-
-
 /* website tray */
 .site-tray {
     float: right;
@@ -91,6 +89,18 @@ a.site-title, .site-title:visited {
     position: fixed;
     bottom: 0;
 }
+
+/* updated */
+.site-footer a.updated, a.updated:visited {
+    display: block;
+    float: right;
+    color: #888888;
+    align: middle;
+    z-index: 1;
+}
+
+.site-footer a.updated:hover { color: #FFFFFF; }
+.site-footer a.updated:link { text-decoration: none; }
 
 /* licence */
 .site-footer .licence {
@@ -223,16 +233,16 @@ article.post-content ol > li::before {
 }
 
 /* general org mode */
-.org-center {
-    text-align: center;
+.org-center * {
+    text-align: center!important;
 }
 
-.org-left {
-    text-align: left;
+.org-left * {
+    text-align: left!important;
 }
 
-.org-right {
-    text-align: right;
+.org-right * {
+    text-align: right!important;
 }
 
 /* table */

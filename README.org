@@ -1,0 +1,72 @@
+#+TITLE: Aqeel Akber's personal website
+#+AUTHOR: Aqeel Akber <aqeel.akber@gmail.com>
+
+See https://admiralakber.github.io and enjoy
+
+I wrote this website for mobile first with a KISS philosophy from scratch. I
+wanted to see how beautiful of a reading experience I can create for the reader
+with nothing but the basics.
+
+You will find the code for this website is very basic indeed. Just standard
+HTML, CSS, JavaScript. This was my challenge. A reduced pallete. I try to fit as
+much goodness and joy out of it as possible.
+
+I have put little to no effort into optimising it for performance. I wanted the
+reader to be able to right click, view source, and be able to understand what I
+did if they wanted. Teaching / Sharing / Learning are part of what I want this
+website to instill. Because it is so basic, and honestly it's my personal blog
+so I don't get much traffic, I'm not concerned about the performance hit of
+serving comments in my code to the user.
+
+Visual design inspired by minimalism, scientific journal articles, and
+originally by https://colah.github.io
+
+The user experience is designed for comfortable reading like a book and app like
+familiarity.
+
+* Making your own blog and contributing
+
+Feel free to fork, you will want to delete everything in [[_posts][_posts]] and [[blog][blog]] and
+fill it in with your own content.
+
+Once you're up and running, I would appreciate a backlink or shoutout if you can
+and please let me know about your blog!
+
+** Using GitHub issues for communications
+
+1. If you're interesting in making a blog but are newbie and really stuck, make
+   an issue with the *how-do-i-even* tag. I'm happy to help you on this journey
+   and I hope others will too. No question to silly. Yay 😊
+
+2. If you're a bit more experienced but you still don't get how something is
+   working use the *question* tag. If it's about something of the content of my
+   blog, best make a comment on the website itself.
+
+3. If you find something wrong with my website, please report it with either the:
+   *bug* or *invalid* tags. Please include your operating system, browser
+   version, and a screenshot of the issue.
+
+4. I would love to hear your ideas for *enhancements*
+
+* Generated with Jekyll
+
+This website is compiled with Jekyll. I like it. It's dead simple. Perfect for
+this project.
+
+* Commit Transparency
+
+Hosting on GitHub pages provides transparency. You may observe the commit
+history. Keep me honest.
+
+* PGP Signing
+
+You can see that I have PGP signed my commits, personally validating their
+content. If you trust my PGP key, you can trust the content is me.
+
+* Org files
+
+I have always been an org user and now thanks to [[https://github.com/yoshinari-nomura/org-octopress][org-octopress]] I can write my
+blog posts in org too. The org source files are uploaded in [[blog][blog]].
+
+Without content, a website is worthless. Integrating my org workflow has made it
+mentally easier for me to generate more awesome content.

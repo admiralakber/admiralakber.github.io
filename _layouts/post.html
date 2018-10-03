@@ -16,7 +16,7 @@ layout: default
         <header class="post-header" style="text-align: center;">
             <h1>{{ page.title }}</h1>
             {% if page.author %}<p>{{ page.author }}</p>{% endif %}
-            <p style="font-style: italic;">{{ page.date | date: "%-d %B %Y" }}</p>
+            <p style="font-style: italic;">Post started {{ page.date | date: "%-d %B %Y" }}</p>
             {% if page.tags %}<p style="font-variant: small-caps;"><i class="fa fa-tags" style="font-size: 0.7em;" aria-hidden="true"></i> {% for tag in page.tags %}<a href="/tags#{{ tag }}">{{ tag }}</a> {% endfor %}</p>{% endif %}
         </header>
         <br>

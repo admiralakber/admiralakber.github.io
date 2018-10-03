@@ -25,9 +25,11 @@ d3.json("/js/tag-data.json", function(error, graph) {
     var s = link.source = nodeById.get(link.source),
         t = link.target = nodeById.get(link.target),
         i = {}; // intermediate node
-    nodes.push(i);
-    links.push({source: s, target: i}, {source: i, target: t});
-    bilinks.push([s, i, t]);
+    if (s != t) {
+      nodes.push(i);
+      links.push({source: s, target: i}, {source: i, target: t});
+      bilinks.push([s, i, t]);
+    }
   });
 
   svg.append("svg:defs").selectAll("marker")

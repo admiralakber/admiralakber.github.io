@@ -22,12 +22,12 @@ layout: none
             {%- for post in site.tags[sourcetag] -%}
             {%- assign lastpost = forloop.last -%}
             {%- for targettag in post.tags -%}
-            {%- if sourcetag == targettag -%} {%- continue -%} {%- endif -%}
+            {%- assign lasttag = forloop.last -%}
             {
               "source" : "{{ sourcetag }}",
               "target" : "{{ targettag }}",
               "value": 1
-            }{%- unless lastsource and lastpost -%},{%- endunless -%}
+            }{%- unless lastsource and lastpost and lasttag -%},{%- endunless -%}
             {%- endfor -%}
             {%- endfor -%}
             {% endfor %}]
