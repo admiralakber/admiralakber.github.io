@@ -94,6 +94,7 @@ a.site-title, .site-title:visited {
 .site-footer a.updated, a.updated:visited {
     display: block;
     float: right;
+    text-align: center;
     color: #888888;
     align: middle;
     z-index: 1;
@@ -233,15 +234,15 @@ article.post-content ol > li::before {
 }
 
 /* general org mode */
-.org-center * {
+.org-center, .org-center * {
     text-align: center!important;
 }
 
-.org-left * {
+.org-left, .org-left * {
     text-align: left!important;
 }
 
-.org-right * {
+.org-right, org-right * {
     text-align: right!important;
 }
 
