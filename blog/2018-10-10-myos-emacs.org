@@ -1,0 +1,169 @@
+#+TITLE: myOS / emacs configuration - org files and spacemacs layers
+#+DATE: 2018-10-10
+#+SETUPFILE: ~/Blog/src/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES:
+#+JEKYLL_TAGS: myos emacs
+#+JEKYLL_PUBLISHED: true
+
+[[https://emacs.org][Emacs]] is not a great text editor, but a great operating system. However, that's
+most certainly not because it's easy to configure. Experienced users of emacs
+(like myself) begin to start viewing emacs as a way of life more than a piece of
+software. This is unsurprising. Emacs is tantalizing. It's simple because it
+focuses on working with plain text, it's complex because it's meant to be
+infinitely customisable. This translates to a lot of hours and effort to get set
+up the way you like in return for such a wonderful reward. Maybe emacs is more a
+drug and we're junkies? Not really a question, it's definitely true. This is how
+I make sure my habit doesn't get out of hand.
+
+To be completely clear, the focus of this post is to go over the methods to
+configure emacs and not the configuration itself. Both these methods should
+produce self-documenting repositories.
+
+* Emacs bankrupt
+
+  According to [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][EmacsWiki]] the term was coined by [[https://www.emacswiki.org/emacs/RyanMcGeary][RyanMcGeary]] on 2007-10-07
+  [[[http://emacsblog.org/2007/10/07/declaring-emacs-bankruptcy/][source]]].
+
+  #+BEGIN_QUOTE
+  I give up. During the past 6 years of my emacs career, my .emacs
+  initialization file grew to embarrassing levels. As of this morning, it is
+  well over 1000 lines and is a looming burden of disorganization. Start up time
+  is poor, customizations exist for modes that I don’t use anymore (ahem,
+  csharp-mode), and it has been this way for too long... *-- RyanMcGeary,
+  2007-10-07*
+  #+END_QUOTE
+
+  This is a well understood phenomenon in the emacs community. If you want enjoy
+  emacs to it's fullest, and you're not careful, this will happen to you. Emacs
+  bankruptcy is so prevalent that it seems like a large portion of the emacs
+  communities effort is put into creating tools and methods to avoid it.
+
+  I'm going to talk about two methods. The first is
+  {{{github(admiralakber,simplemacs)}}} - this was a learning exercise for me
+  that I have turned into a beginner friendly starting point for friends. After
+  I made, {{{github(admiralakber,simplemacs)}}} I was confident enough to start
+  exploring the much more full featured configuration platform, [[http://spacemacs.org][spacemacs]].
+
+* Simplemacs
+
+  GitHub: {{{github(admiralakber,simplemacs)}}}
+
+  Emacs ships with many very useful packages to extend past the core lisp
+  interpreter. My favourite of these is called =org-mode= and it provides a
+  solution to emacs bankruptcy.
+
+  Org mode includes =org-babel=. Org babel turns our plain text =.org= files
+  into a multi-language [[http://jupyter.org/][Jupyter]] notebook. The inbuilt function
+  =org-babel-load-file=, takes an org file and exports all the =emacs-lisp=
+  source code blocks into an =.el= file and runs it. This allows us to write our
+  emacs configuration in a collection of rich org files that are then
+  babel-loaded.
+
+  I like this setup, mastering the practice of it provides a great return on
+  investment: you will learn literate programming, how to keep good notes, how
+  to store that collection of notes in a useful way. This is what I tried to
+  achieve with {{{github(admiralakber,simplemacs)}}}. As stated in the
+  repositories README:
+
+  #+BEGIN_QUOTE
+   Simplemacs is the configuration you give your keen newbie hacker friend
+   when introducing them the wonderful world of emacs.
+   @@html:<br/><br/>@@
+   Simplemacs is the configuration you use when you just want to GTD.
+   @@html:<br/><br/>@@
+   Ugh, yet another emacs configuration I hear you say, and yes I can't
+   deny that. Let me place this one relative to others with a table:
+   @@html:<br/><br/>@@
+   #+CAPTION: Where simplemacs sits relative to other emacs configurations
+   |       | Small / Simple      | Large / Complex        |
+   | <c>   | <c>                 | <c>                    |
+   | Neat  | [[https://github.com/admiralakber/simplemacs][simplemacs]]          | [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]], [[http://spacemacs.org/][spacemacs]] |
+   | Messy | old mate's dotfiles | [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][.emacs bankrupt]]        |
+   @@html:<br/>@@
+   It's basically old mate's dotfiles, where old mate is obsessive about
+   neat code, loves =org-mode=, and minimalism. The entire repository
+   should be self documenting, and concise. Have a browse!
+  #+END_QUOTE
+
+  Mastering a setup like Simplemacs you receive your Bachelor of Emacs
+  Configuration with first class honours. It's time to enter the real world.
+
+* Spacemacs
+
+  On the surface [[http://spacemacs.org/][spacemacs]] is a hard sell of [[https://www.vim.org][vim]] like bindings in emacs, this
+  doesn't do the platform justice. Spacemacs provides a great out-of-the-box
+  experience of emacs, and as with all the best open-source projects, it is
+  community-driven. To foster a community-driven project requires an easy way to
+  contribute. This means you need to create a way for people to cleanly add
+  configuration on top of spacemacs. [[http://spacemacs.org/doc/DOCUMENTATION.html#configuration-layers][Configuration layers]] were born.
+
+** Configuration layers as myOS machines
+   GitHub: {{{github(admiralakber,myOS-emacs)}}}
+
+   Recall that {{{taglink(myos)}}} posts are a documentation of the development
+   process described in my {{{postlink(2018-09-17-myos-qubes,first post)}}} in
+   the series. Because I evolve (especially during this process) so does myOS.
+   *The latest officially accepted revision can be found @@html:<a
+   href="/myos">on the myOS page</a>@@.*
+
+   In this context, you can use configuration layers are very powerful and you
+   can use them to create {{{postlink(2018-09-22-myos-machines,myOS / emacs
+   machines)}}} quite elegantly. Emacs is a monster system that can be
+   configured to complete lots of different tasks.
+
+   #+CAPTION: Using a personal configuration layer to create an abstract machine ~myOS-emacs-base-machine~ that completes tasks from system ~myOS / emacs~.
+   #+NAME: tbl:myos-emacs-base-machine
+   | Writing Task   | System       | Machine             | Result                      | Backend                  | Configuration                         |
+   |----------------+--------------+---------------------+-----------------------------+--------------------------+---------------------------------------|
+   | <c>            | <c>          | <c>                 | <c>                         | <c>                      | <c>                                   |
+   | Check spelling | myOS / emacs | myOS-spacemacs-base | Underline spelling mistakes | [[http://spacemacs.org/layers/+checkers/spell-checking/README.html][spacemacs-spell-checking]] | {{{github(admiralakber,myOS-emacs)}}} |
+
+   In Table [[tbl:myos-emacs-base-machine]] I define a personal configuration layer
+   as a machine ~myOS-emacs-base-machine~ that relies on the spacemacs spell
+   checking layer, also a machine. This lets me complete spell checking tasks in
+   emacs.
+
+** Personal Information Management in Emacs
+   GitHub: {{{github(admiralakber,myOS-spacemacs-pim)}}}
+
+   I have also got a much more sophisticated machine to complete personal
+   information management (PIM) tasks within emacs. This includes viewing and
+   composing emails as eluded to in my {{{postlink(2018-09-20-myos-email,first
+   post about myOS / email)}}}. Since that post I have included the idea of a
+   machine and the task completion strategy is described in Table
+   [[tbl:myos-emacs-pim-email]].
+
+   #+CAPTION: Using the ~myOS-spacemacs-pim~ layer as a machine to complete tasks from system ~myOS / email~ in ~myOS / emacs~.
+   #+NAME: tbl:myos-emacs-pim-email
+   | Email Task       | System                       | Machine            | Result                      | Backend       | Configuration                                 |
+   |------------------+------------------------------+--------------------+-----------------------------+---------------+-----------------------------------------------|
+   | <c>              | <c>                          | <c>                | <c>                         | <c>           | <c>                                           |
+   | Viewing emails   | myOS / email in myOS / emacs | myOS-spacemacs-pim | Display emails              | [[https://notmuchmail.org/notmuch-emacs/][notmuch-emacs]] | {{{github(admiralakber,myOS-spacemacs-pim)}}} |
+   | Composing emails | myOS / email in myOS / emacs | myOS-spacemacs-pim | Create a new email document | [[https://notmuchmail.org/notmuch-emacs/][notmuch-emacs]] | {{{github(admiralakber,myOS-spacemacs-pim)}}} |
+
+   The {{{github(admiralakber,myOS-spacemacs-pim)}}} layer I have written also
+   helps me complete the task of writing these blog posts.
+
+   #+CAPTION: Using the ~myOS-spacemacs-pim~ layer as a machine to complete tasks tasks from system ~myOS / blog~.
+   #+NAME: tbl:myos-emacs-pim-blog
+   | Blog Task     | System                      | Machine            | Result                          | Backend       | Configuration                                 |
+   |---------------+-----------------------------+--------------------+---------------------------------+---------------+-----------------------------------------------|
+   | <c>           | <c>                         | <c>                | <c>                             | <c>           | <c>                                           |
+   | New blog post | myOS / blog in myOS / emacs | myOS-spacemacs-pim | Create new blog post document   | [[https://github.com/yoshinari-nomura/org-octopress][org-octopress]] | {{{github(admiralakber,myOS-spacemacs-pim)}}} |
+   |               | myOS / blog in myOS / emacs | myOS-spacemacs-pim | Export post document for jekyll | [[https://github.com/yoshinari-nomura/org-octopress][org-octopress]] | {{{github(admiralakber,myOS-spacemacs-pim)}}} |
+
+   My {{{github(admiralakber,myOS-spacemacs-pim)}}} configuration layer is my
+   most relied on machine. I will be tweaking it constantly keep an eye on the
+   github repository.
+
+* Installing and using my configuration
+
+  I believe the README of the configuration, and the code itself should be
+  enough for you to get started. If not or you have suggestions for the README
+  on [[https://github.com/admiralakber/myOS-emacs][the myOS-emacs GitHub]] -- please let me know with an issue on the repository
+  page.
+
+  How do you set up your emacs? Do you think you will consider using simplemacs
+  or spacemacs layers? Have any questions about how I set up my spacemacs
+  layers? Leave a comment below.

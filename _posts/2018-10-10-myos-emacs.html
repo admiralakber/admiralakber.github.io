@@ -1,0 +1,374 @@
+---
+title: "myOS / emacs configuration - org files and spacemacs layers"
+date: 2018-10-10
+layout: post
+categories:
+tags:
+- myos
+- emacs
+published: true
+comments:
+---
+<p>
+<a href="https://emacs.org">Emacs</a> is not a great text editor, but a great operating system. However, that's
+most certainly not because it's easy to configure. Experienced users of emacs
+(like myself) begin to start viewing emacs as a way of life more than a piece of
+software. This is unsurprising. Emacs is tantalizing. It's simple because it
+focuses on working with plain text, it's complex because it's meant to be
+infinitely customisable. This translates to a lot of hours and effort to get set
+up the way you like in return for such a wonderful reward. Maybe emacs is more a
+drug and we're junkies? Not really a question, it's definitely true. This is how
+I make sure my habit doesn't get out of hand.
+</p>
+
+<p>
+To be completely clear, the focus of this post is to go over the methods to
+configure emacs and not the configuration itself. Both these methods should
+produce self-documenting repositories.
+</p>
+
+<div id="outline-container-orgef69f40" class="outline-2">
+<h2 id="orgef69f40">Emacs bankrupt</h2>
+<div class="outline-text-2" id="text-orgef69f40">
+<p>
+According to <a href="https://www.emacswiki.org/emacs/DotEmacsBankruptcy">EmacsWiki</a> the term was coined by <a href="https://www.emacswiki.org/emacs/RyanMcGeary">RyanMcGeary</a> on 2007-10-07
+[<a href="http://emacsblog.org/2007/10/07/declaring-emacs-bankruptcy/">source</a>].
+</p>
+
+<blockquote>
+<p>
+I give up. During the past 6 years of my emacs career, my .emacs
+initialization file grew to embarrassing levels. As of this morning, it is
+well over 1000 lines and is a looming burden of disorganization. Start up time
+is poor, customizations exist for modes that I don’t use anymore (ahem,
+csharp-mode), and it has been this way for too long&#x2026; <b>&#x2013; RyanMcGeary,
+2007-10-07</b>
+</p>
+</blockquote>
+
+<p>
+This is a well understood phenomenon in the emacs community. If you want enjoy
+emacs to it's fullest, and you're not careful, this will happen to you. Emacs
+bankruptcy is so prevalent that it seems like a large portion of the emacs
+communities effort is put into creating tools and methods to avoid it.
+</p>
+
+<p>
+I'm going to talk about two methods. The first is
+<a href="https://github.com/admiralakber/simplemacs">simplemacs</a> - this was a learning exercise for me
+that I have turned into a beginner friendly starting point for friends. After
+I made, <a href="https://github.com/admiralakber/simplemacs">simplemacs</a> I was confident enough to start
+exploring the much more full featured configuration platform, <a href="http://spacemacs.org">spacemacs</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d3a32b" class="outline-2">
+<h2 id="org3d3a32b">Simplemacs</h2>
+<div class="outline-text-2" id="text-org3d3a32b">
+<p>
+GitHub: <a href="https://github.com/admiralakber/simplemacs">simplemacs</a>
+</p>
+
+<p>
+Emacs ships with many very useful packages to extend past the core lisp
+interpreter. My favourite of these is called <code>org-mode</code> and it provides a
+solution to emacs bankruptcy.
+</p>
+
+<p>
+Org mode includes <code>org-babel</code>. Org babel turns our plain text <code>.org</code> files
+into a multi-language <a href="http://jupyter.org/">Jupyter</a> notebook. The inbuilt function
+<code>org-babel-load-file</code>, takes an org file and exports all the <code>emacs-lisp</code>
+source code blocks into an <code>.el</code> file and runs it. This allows us to write our
+emacs configuration in a collection of rich org files that are then
+babel-loaded.
+</p>
+
+<p>
+I like this setup, mastering the practice of it provides a great return on
+investment: you will learn literate programming, how to keep good notes, how
+to store that collection of notes in a useful way. This is what I tried to
+achieve with <a href="https://github.com/admiralakber/simplemacs">simplemacs</a>. As stated in the
+repositories README:
+</p>
+
+<blockquote>
+<p>
+Simplemacs is the configuration you give your keen newbie hacker friend
+when introducing them the wonderful world of emacs.
+<br/><br/>
+Simplemacs is the configuration you use when you just want to GTD.
+<br/><br/>
+Ugh, yet another emacs configuration I hear you say, and yes I can't
+deny that. Let me place this one relative to others with a table:
+<br/><br/>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Where simplemacs sits relative to other emacs configurations</caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">Small / Simple</td>
+<td class="org-center">Large / Complex</td>
+</tr>
+
+<tr>
+<td class="org-center">Neat</td>
+<td class="org-center"><a href="https://github.com/admiralakber/simplemacs">simplemacs</a></td>
+<td class="org-center"><a href="https://github.com/xiaohanyu/oh-my-emacs">oh-my-emacs</a>, <a href="http://spacemacs.org/">spacemacs</a></td>
+</tr>
+
+<tr>
+<td class="org-center">Messy</td>
+<td class="org-center">old mate's dotfiles</td>
+<td class="org-center"><a href="https://www.emacswiki.org/emacs/DotEmacsBankruptcy">.emacs bankrupt</a></td>
+</tr>
+</tbody>
+</table>
+<p>
+<br/>
+It's basically old mate's dotfiles, where old mate is obsessive about
+neat code, loves <code>org-mode</code>, and minimalism. The entire repository
+should be self documenting, and concise. Have a browse!
+</p>
+</blockquote>
+
+<p>
+Mastering a setup like Simplemacs you receive your Bachelor of Emacs
+Configuration with first class honours. It's time to enter the real world.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org78d017c" class="outline-2">
+<h2 id="org78d017c">Spacemacs</h2>
+<div class="outline-text-2" id="text-org78d017c">
+<p>
+On the surface <a href="http://spacemacs.org/">spacemacs</a> is a hard sell of <a href="https://www.vim.org">vim</a> like bindings in emacs, this
+doesn't do the platform justice. Spacemacs provides a great out-of-the-box
+experience of emacs, and as with all the best open-source projects, it is
+community-driven. To foster a community-driven project requires an easy way to
+contribute. This means you need to create a way for people to cleanly add
+configuration on top of spacemacs. <a href="http://spacemacs.org/doc/DOCUMENTATION.html#configuration-layers">Configuration layers</a> were born.
+</p>
+</div>
+
+<div id="outline-container-orgfbb7d51" class="outline-3">
+<h3 id="orgfbb7d51">Configuration layers as myOS machines</h3>
+<div class="outline-text-3" id="text-orgfbb7d51">
+<p>
+GitHub: <a href="https://github.com/admiralakber/myOS-emacs">myOS-emacs</a>
+</p>
+
+<p>
+Recall that <a href="/tags#myos" style="font-variant : small-caps;">myos</a> posts are a documentation of the development
+process described in my <a href="{% post_url 2018-09-17-myos-qubes %}">first post</a> in
+the series. Because I evolve (especially during this process) so does myOS.
+<b>The latest officially accepted revision can be found <a
+   href="/myos">on the myOS page</a>.</b>
+</p>
+
+<p>
+In this context, you can use configuration layers are very powerful and you
+can use them to create <a href="{% post_url 2018-09-22-myos-machines %}">myOS / emacs
+   machines</a> quite elegantly. Emacs is a monster system that can be
+configured to complete lots of different tasks.
+</p>
+
+<table id="org8402d60" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> Using a personal configuration layer to create an abstract machine <code>myOS-emacs-base-machine</code> that completes tasks from system <code>myOS / emacs</code>.</caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Writing Task</th>
+<th scope="col" class="org-center">System</th>
+<th scope="col" class="org-center">Machine</th>
+<th scope="col" class="org-center">Result</th>
+<th scope="col" class="org-center">Backend</th>
+<th scope="col" class="org-center">Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">Check spelling</td>
+<td class="org-center">myOS / emacs</td>
+<td class="org-center">myOS-spacemacs-base</td>
+<td class="org-center">Underline spelling mistakes</td>
+<td class="org-center"><a href="http://spacemacs.org/layers/+checkers/spell-checking/README.html">spacemacs-spell-checking</a></td>
+<td class="org-center"><a href="https://github.com/admiralakber/myOS-emacs">myOS-emacs</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+In Table <a href="#org8402d60">2</a> I define a personal configuration layer
+as a machine <code>myOS-emacs-base-machine</code> that relies on the spacemacs spell
+checking layer, also a machine. This lets me complete spell checking tasks in
+emacs.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org846c301" class="outline-3">
+<h3 id="org846c301">Personal Information Management in Emacs</h3>
+<div class="outline-text-3" id="text-org846c301">
+<p>
+GitHub: <a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a>
+</p>
+
+<p>
+I have also got a much more sophisticated machine to complete personal
+information management (PIM) tasks within emacs. This includes viewing and
+composing emails as eluded to in my <a href="{% post_url 2018-09-20-myos-email %}">first
+   post about myOS / email</a>. Since that post I have included the idea of a
+machine and the task completion strategy is described in Table
+<a href="#orgb21999c">3</a>.
+</p>
+
+<table id="orgb21999c" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 3:</span> Using the <code>myOS-spacemacs-pim</code> layer as a machine to complete tasks from system <code>myOS / email</code> in <code>myOS / emacs</code>.</caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Email Task</th>
+<th scope="col" class="org-center">System</th>
+<th scope="col" class="org-center">Machine</th>
+<th scope="col" class="org-center">Result</th>
+<th scope="col" class="org-center">Backend</th>
+<th scope="col" class="org-center">Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">Viewing emails</td>
+<td class="org-center">myOS / email in myOS / emacs</td>
+<td class="org-center">myOS-spacemacs-pim</td>
+<td class="org-center">Display emails</td>
+<td class="org-center"><a href="https://notmuchmail.org/notmuch-emacs/">notmuch-emacs</a></td>
+<td class="org-center"><a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a></td>
+</tr>
+
+<tr>
+<td class="org-center">Composing emails</td>
+<td class="org-center">myOS / email in myOS / emacs</td>
+<td class="org-center">myOS-spacemacs-pim</td>
+<td class="org-center">Create a new email document</td>
+<td class="org-center"><a href="https://notmuchmail.org/notmuch-emacs/">notmuch-emacs</a></td>
+<td class="org-center"><a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The <a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a> layer I have written also
+helps me complete the task of writing these blog posts.
+</p>
+
+<table id="orge042edb" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 4:</span> Using the <code>myOS-spacemacs-pim</code> layer as a machine to complete tasks tasks from system <code>myOS / blog</code>.</caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Blog Task</th>
+<th scope="col" class="org-center">System</th>
+<th scope="col" class="org-center">Machine</th>
+<th scope="col" class="org-center">Result</th>
+<th scope="col" class="org-center">Backend</th>
+<th scope="col" class="org-center">Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">New blog post</td>
+<td class="org-center">myOS / blog in myOS / emacs</td>
+<td class="org-center">myOS-spacemacs-pim</td>
+<td class="org-center">Create new blog post document</td>
+<td class="org-center"><a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a></td>
+<td class="org-center"><a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a></td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">myOS / blog in myOS / emacs</td>
+<td class="org-center">myOS-spacemacs-pim</td>
+<td class="org-center">Export post document for jekyll</td>
+<td class="org-center"><a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a></td>
+<td class="org-center"><a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+My <a href="https://github.com/admiralakber/myOS-spacemacs-pim">myOS-spacemacs-pim</a> configuration layer is my
+most relied on machine. I will be tweaking it constantly keep an eye on the
+github repository.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5bdb9b5" class="outline-2">
+<h2 id="org5bdb9b5">Installing and using my configuration</h2>
+<div class="outline-text-2" id="text-org5bdb9b5">
+<p>
+I believe the README of the configuration, and the code itself should be
+enough for you to get started. If not or you have suggestions for the README
+on <a href="https://github.com/admiralakber/myOS-emacs">the myOS-emacs GitHub</a> &#x2013; please let me know with an issue on the repository
+page.
+</p>
+
+<p>
+How do you set up your emacs? Do you think you will consider using simplemacs
+or spacemacs layers? Have any questions about how I set up my spacemacs
+layers? Leave a comment below.
+</p>
+</div>
+</div>
